@@ -1,0 +1,225 @@
+[
+  {
+    "type": "container_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "container_doc_comment",
+          "named": true
+        },
+        {
+          "type": "container_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "container_field",
+    "named": true,
+    "fields": {
+      "comptime": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comptime",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "doc_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pointer_type",
+    "named": true,
+    "fields": {
+      "child": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      },
+      "size": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "c_pointer",
+            "named": true
+          },
+          {
+            "type": "many_pointer",
+            "named": true
+          },
+          {
+            "type": "one_pointer",
+            "named": true
+          },
+          {
+            "type": "slice_pointer",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "allowzero",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "volatile",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "string_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "allowzero",
+    "named": true
+  },
+  {
+    "type": "c_pointer",
+    "named": true
+  },
+  {
+    "type": "comptime",
+    "named": true
+  },
+  {
+    "type": "constant",
+    "named": true
+  },
+  {
+    "type": "container_doc_comment",
+    "named": true
+  },
+  {
+    "type": "doc_comment",
+    "named": true
+  },
+  {
+    "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "many_pointer",
+    "named": true
+  },
+  {
+    "type": "one_pointer",
+    "named": true
+  },
+  {
+    "type": "slice_pointer",
+    "named": true
+  },
+  {
+    "type": "string_fragment",
+    "named": true
+  },
+  {
+    "type": "volatile",
+    "named": true
+  }
+]

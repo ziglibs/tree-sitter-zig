@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-zig",
+  "version": "1.0.0",
+  "description": "tree-sitter grammar for Zig for use in ZLS",
+  "main": "grammar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zigtools/tree-sitter-zig"
+  },
+  "author": "Auguste Rame",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  }
+}
