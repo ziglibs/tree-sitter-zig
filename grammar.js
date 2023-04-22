@@ -25,7 +25,7 @@ module.exports = grammar({
     conflicts: ($) => [],
 
     rules: {
-        container_body: ($) => seq(optional($.container_doc_comment), optional($._container_members)),
+        root: ($) => seq(optional($.container_doc_comment), optional($._container_members)),
 
         // Comments
         container_doc_comment: (_) =>
@@ -56,7 +56,10 @@ module.exports = grammar({
 
         // Containers
         _container_members: ($) => repeat1(
-            choice(seq($.container_field, optional(",")))
+            choice(
+                seq($.container_field, optional(",")),
+                seq($.container_function)
+            ),
         ),
 
         // Expressions
@@ -79,9 +82,20 @@ module.exports = grammar({
             $.block,
         ),
 
-        block: ($) => seq("{", repeat($.statement), "}"),
+        block: ($) => seq("{", repeat($._statement), "}"),
 
-        statement: ($) => {},
+        _statement: ($) => seq(
+            choice(
+                $.break_statement,
+            ),
+            ";"
+        ),
+        
+        break_statement: $ => seq(
+            "break",
+            optional(seq(":", field("label", $.identifier))),
+            optional(field("value", $._expr)),
+        ),
 
         // Types
         // Some types:
@@ -130,13 +144,32 @@ module.exports = grammar({
         // Should comptime fields be handled like this?
         // They're fundamentally different as they require default values
         container_field: ($) => seq(
-            optional($.doc_comment),
+            optional(field("documentation", $.doc_comment)),
             optional(field("comptime", $.comptime)),
-            choice(
-                seq(field("name", $.identifier), ":", field("type", $._type_expr)),
-            ),
+            seq(field("name", $.identifier), ":", field("type", $._type_expr)),
             optional(field("alignment", $.alignment)),
-            // optional(seq(EQUAL, $._Expr))
-        )
+            optional(field("default", seq("=", $._expr)))
+        ),
+
+        function_prototype: ($) => seq(
+            "fn",
+            field("name", $.identifier),
+            // TODO: params
+            "()",
+            optional(field("alignment", $.alignment)),
+            field("return_type", $._expr),
+            // TODO: callconv
+        ),
+
+        pub: (_) => "pub",
+        extern: (_) => "extern",
+
+        container_function: ($) => seq(
+            optional(field("documentation", $.doc_comment)),
+            optional(field("pub", $.pub)),
+            optional(field("extern", $.extern)),
+            $.function_prototype,
+            choice(field("body", $.block), ";")
+        ),
     }
 });

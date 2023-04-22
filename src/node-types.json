@@ -17,7 +17,17 @@
   {
     "type": "block",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "break_statement",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "block_expr",
@@ -46,22 +56,41 @@
     }
   },
   {
-    "type": "container_body",
+    "type": "break_statement",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "container_doc_comment",
-          "named": true
-        },
-        {
-          "type": "container_field",
-          "named": true
-        }
-      ]
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -84,6 +113,42 @@
         "types": [
           {
             "type": "comptime",
+            "named": true
+          }
+        ]
+      },
+      "default": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      },
+      "documentation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "doc_comment",
             "named": true
           }
         ]
@@ -112,16 +177,110 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "container_function",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "documentation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "doc_comment",
+            "named": true
+          }
+        ]
+      },
+      "extern": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "extern",
+            "named": true
+          }
+        ]
+      },
+      "pub": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pub",
+            "named": true
+          }
+        ]
+      }
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "doc_comment",
+          "type": "function_prototype",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "function_prototype",
+    "named": true,
+    "fields": {
+      "alignment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "alignment",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -237,6 +396,29 @@
     }
   },
   {
+    "type": "root",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "container_doc_comment",
+          "named": true
+        },
+        {
+          "type": "container_field",
+          "named": true
+        },
+        {
+          "type": "container_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "slice_pointer",
     "named": true,
     "fields": {
@@ -284,6 +466,10 @@
     "named": false
   },
   {
+    "type": "()",
+    "named": false
+  },
+  {
     "type": ")",
     "named": false
   },
@@ -293,6 +479,14 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {
@@ -320,6 +514,10 @@
     "named": true
   },
   {
+    "type": "break",
+    "named": false
+  },
+  {
     "type": "c_pointer",
     "named": true
   },
@@ -340,11 +538,23 @@
     "named": true
   },
   {
+    "type": "extern",
+    "named": true
+  },
+  {
+    "type": "fn",
+    "named": false
+  },
+  {
     "type": "line_comment",
     "named": true
   },
   {
     "type": "one_pointer",
+    "named": true
+  },
+  {
+    "type": "pub",
     "named": true
   },
   {
