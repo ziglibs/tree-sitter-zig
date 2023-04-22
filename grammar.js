@@ -1,68 +1,3 @@
-// Extracted from [tokenizer.lexeme](https://github.com/ziglang/zig/blob/master/lib/std/zig/tokenizer.zig#L192)
-
-const bang = "!";
-const pipe = "|";
-const pipe_pipe = "||";
-const pipe_equal = "|=";
-const equal = "=";
-const equal_equal = "==";
-const equal_angle_bracket_right = "=>";
-const bang_equal = "!=";
-const l_paren = "(";
-const r_paren = ")";
-const semicolon = ";";
-const percent = "%";
-const percent_equal = "%=";
-const l_brace = "{";
-const r_brace = "}";
-const l_bracket = "[";
-const r_bracket = "]";
-const period = ".";
-const period_asterisk = ".*";
-const ellipsis2 = "..";
-const ellipsis3 = "...";
-const caret = "^";
-const caret_equal = "^=";
-const plus = "+";
-const plus_plus = "++";
-const plus_equal = "+=";
-const plus_percent = "+%";
-const plus_percent_equal = "+%=";
-const plus_pipe = "+|";
-const plus_pipe_equal = "+|=";
-const minus = "-";
-const minus_equal = "-=";
-const minus_percent = "-%";
-const minus_percent_equal = "-%=";
-const minus_pipe = "-|";
-const minus_pipe_equal = "-|=";
-const asterisk = "*";
-const asterisk_equal = "*=";
-const asterisk_asterisk = "**";
-const asterisk_percent = "*%";
-const asterisk_percent_equal = "*%=";
-const asterisk_pipe = "*|";
-const asterisk_pipe_equal = "*|=";
-const arrow = "->";
-const colon = ":";
-const slash = "/";
-const slash_equal = "/=";
-const comma = ",";
-const ampersand = "&";
-const ampersand_equal = "&=";
-const question_mark = "?";
-const angle_bracket_left = "<";
-const angle_bracket_left_equal = "<=";
-const angle_bracket_angle_bracket_left = "<<";
-const angle_bracket_angle_bracket_left_equal = "<<=";
-const angle_bracket_angle_bracket_left_pipe = "<<|";
-const angle_bracket_angle_bracket_left_pipe_equal = "<<|=";
-const angle_bracket_right = ">";
-const angle_bracket_right_equal = ">=";
-const angle_bracket_angle_bracket_right = ">>";
-const angle_bracket_angle_bracket_right_equal = ">>=";
-const tilde = "~";
-
 const precedence = {
     curly: 1,
     assign: 2,
@@ -75,6 +10,10 @@ const precedence = {
     addition: 9,
     multiply: 10,
     prefix: 11,
+};
+
+function numericWithSeparator(regex) {
+    return seq(regex, repeat(seq(optional("_"), regex)));
 }
 
 module.exports = grammar({
@@ -102,11 +41,49 @@ module.exports = grammar({
 
         comptime: ($) => "comptime",
 
-        // Containers
-        _container_members: ($) => repeat1(
-            choice(seq($.container_field, optional(comma)))
+        // integer: (_) => choice(
+        //     token(seq("0b", seq(/[01]/, repeat(seq(optional("_"), /[01]/))))),
+        //     token(seq("0o", seq(/[0-7]/, repeat(seq(optional("_"), /[0-7]/))))),
+        //     token(seq("0x", seq(/[0-9a-fA-F]/, repeat(seq(optional("_"), /[0-9a-fA-F]/))))),
+        //     token(seq(/[0-9]/, repeat(seq(optional("_"), /[0-9]/)))),
+        // ),
+        integer: (_) => choice(
+            token(seq("0b", numericWithSeparator(/[01]/))),
+            token(seq("0o", numericWithSeparator(/[0-7]/))),
+            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/))),
+            token(numericWithSeparator(/[0-9]/)),
         ),
 
+        // Containers
+        _container_members: ($) => repeat1(
+            choice(seq($.container_field, optional(",")))
+        ),
+
+        // Expressions
+        // A free-form expression that returns a value, e.g.:
+        // 1
+        // {}
+        // a: {break :a 12;}
+        // if (1 == 1) 0 else 1
+        // some sort of type
+        // etc.
+        _expr: ($) => choice(
+            $.integer,
+            $._type_expr,
+            $.block_expr,
+        ),
+
+        // Block
+        block_expr: ($) => seq(
+            optional(seq(field("label", $.identifier), ":")),
+            $.block,
+        ),
+
+        block: ($) => seq("{", repeat($.statement), "}"),
+
+        statement: ($) => {},
+
+        // Types
         // Some types:
         // u8
         // *u8
@@ -122,10 +99,10 @@ module.exports = grammar({
         ),
 
         // Pointer
-        one_pointer: ($) => "*",
-        many_pointer: ($) => "[*]",
-        slice_pointer: ($) => "[]",
-        c_pointer: ($) => "[*c]",
+        one_pointer: (_) => "*",
+        many_pointer: ($) => seq("[*", optional(seq(":", field("sentinel", $._expr))), "]"),
+        slice_pointer: ($) => seq("[", optional(seq(":", field("sentinel", $._expr))), "]"),
+        c_pointer: (_) => "[*c]",
 
         _pointer_size: ($) => choice(
             $.one_pointer,
@@ -134,11 +111,12 @@ module.exports = grammar({
             $.c_pointer,
         ),
 
-        allowzero: ($) => "allowzero",
-        constant: ($) => "const",
-        volatile: ($) => "volatile",
+        alignment: ($) => seq("align(", $.integer, ")"),
+        allowzero: (_) => "allowzero",
+        constant: (_) => "const",
+        volatile: (_) => "volatile",
 
-        _pointer_modifier: ($) => choice($.allowzero, $.constant, $.volatile),
+        _pointer_modifier: ($) => choice($.allowzero, $.alignment, $.constant, $.volatile),
 
         pointer_type: ($) => seq(
             field("size", $._pointer_size),
@@ -155,9 +133,9 @@ module.exports = grammar({
             optional($.doc_comment),
             optional(field("comptime", $.comptime)),
             choice(
-                seq(field("name", $.identifier), colon, field("type", $._type_expr)),
+                seq(field("name", $.identifier), ":", field("type", $._type_expr)),
             ),
-            // optional($.ByteAlign),
+            optional(field("alignment", $.alignment)),
             // optional(seq(EQUAL, $._Expr))
         )
     }

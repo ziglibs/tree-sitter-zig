@@ -1,5 +1,51 @@
 [
   {
+    "type": "alignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "block_expr",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "container_body",
     "named": true,
     "fields": {},
@@ -22,6 +68,16 @@
     "type": "container_field",
     "named": true,
     "fields": {
+      "alignment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "alignment",
+            "named": true
+          }
+        ]
+      },
       "comptime": {
         "multiple": false,
         "required": false,
@@ -84,6 +140,39 @@
     }
   },
   {
+    "type": "integer",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "many_pointer",
+    "named": true,
+    "fields": {
+      "sentinel": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "pointer_type",
     "named": true,
     "fields": {
@@ -129,6 +218,10 @@
       "required": false,
       "types": [
         {
+          "type": "alignment",
+          "named": true
+        },
+        {
           "type": "allowzero",
           "named": true
         },
@@ -141,6 +234,34 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "slice_pointer",
+    "named": true,
+    "fields": {
+      "sentinel": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -163,6 +284,10 @@
     "named": false
   },
   {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -172,6 +297,22 @@
   },
   {
     "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "[*",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "align(",
     "named": false
   },
   {
@@ -203,15 +344,7 @@
     "named": true
   },
   {
-    "type": "many_pointer",
-    "named": true
-  },
-  {
     "type": "one_pointer",
-    "named": true
-  },
-  {
-    "type": "slice_pointer",
     "named": true
   },
   {
@@ -221,5 +354,13 @@
   {
     "type": "volatile",
     "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]
