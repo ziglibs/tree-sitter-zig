@@ -15,6 +15,87 @@
     }
   },
   {
+    "type": "assign_stmt",
+    "named": true,
+    "fields": {
+      "dest": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_operator",
+            "named": true
+          }
+        ]
+      },
+      "src": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "assignment_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -23,7 +104,15 @@
       "required": false,
       "types": [
         {
-          "type": "break_statement",
+          "type": "assign_stmt",
+          "named": true
+        },
+        {
+          "type": "break_stmt",
+          "named": true
+        },
+        {
+          "type": "var_decl",
           "named": true
         }
       ]
@@ -56,7 +145,7 @@
     }
   },
   {
-    "type": "break_statement",
+    "type": "break_stmt",
     "named": true,
     "fields": {
       "label": {
@@ -78,6 +167,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -87,6 +180,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -130,6 +227,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -139,6 +240,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -168,11 +273,27 @@
         "required": true,
         "types": [
           {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -203,6 +324,16 @@
           }
         ]
       },
+      "export": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "export",
+            "named": true
+          }
+        ]
+      },
       "extern": {
         "multiple": false,
         "required": false,
@@ -229,14 +360,70 @@
       "required": true,
       "types": [
         {
-          "type": "function_prototype",
+          "type": "fn_proto",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_prototype",
+    "type": "container_var_decl",
+    "named": true,
+    "fields": {
+      "documentation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "doc_comment",
+            "named": true
+          }
+        ]
+      },
+      "export": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "export",
+            "named": true
+          }
+        ]
+      },
+      "extern": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "extern",
+            "named": true
+          }
+        ]
+      },
+      "pub": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pub",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "var_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fn_proto",
     "named": true,
     "fields": {
       "alignment": {
@@ -268,6 +455,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -277,6 +468,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -316,6 +511,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -325,6 +524,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -340,11 +543,27 @@
         "required": true,
         "types": [
           {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
+            "type": "integer",
+            "named": true
+          },
+          {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -414,6 +633,10 @@
         {
           "type": "container_function",
           "named": true
+        },
+        {
+          "type": "container_var_decl",
+          "named": true
         }
       ]
     }
@@ -431,6 +654,10 @@
             "named": true
           },
           {
+            "type": "float",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -441,10 +668,19 @@
           {
             "type": "pointer_type",
             "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "string_escape",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "string_literal",
@@ -455,6 +691,10 @@
       "required": false,
       "types": [
         {
+          "type": "string_escape",
+          "named": true
+        },
+        {
           "type": "string_fragment",
           "named": true
         }
@@ -462,7 +702,123 @@
     }
   },
   {
+    "type": "var_decl",
+    "named": true,
+    "fields": {
+      "alignment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "alignment",
+            "named": true
+          }
+        ]
+      },
+      "constness": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "var",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "%=",
+    "named": false
+  },
+  {
+    "type": "&=",
     "named": false
   },
   {
@@ -474,7 +830,75 @@
     "named": false
   },
   {
+    "type": "*%",
+    "named": false
+  },
+  {
+    "type": "*%=",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "*=",
+    "named": false
+  },
+  {
+    "type": "*|",
+    "named": false
+  },
+  {
+    "type": "*|=",
+    "named": false
+  },
+  {
+    "type": "+%",
+    "named": false
+  },
+  {
+    "type": "+%=",
+    "named": false
+  },
+  {
+    "type": "+=",
+    "named": false
+  },
+  {
+    "type": "+|",
+    "named": false
+  },
+  {
+    "type": "+|=",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-%",
+    "named": false
+  },
+  {
+    "type": "-%=",
+    "named": false
+  },
+  {
+    "type": "-=",
+    "named": false
+  },
+  {
+    "type": "-|",
+    "named": false
+  },
+  {
+    "type": "-|=",
+    "named": false
+  },
+  {
+    "type": "/=",
     "named": false
   },
   {
@@ -486,7 +910,35 @@
     "named": false
   },
   {
+    "type": "<<=",
+    "named": false
+  },
+  {
+    "type": "<<|=",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>=",
     "named": false
   },
   {
@@ -502,7 +954,35 @@
     "named": false
   },
   {
+    "type": "\\\"",
+    "named": false
+  },
+  {
+    "type": "\\'",
+    "named": false
+  },
+  {
+    "type": "\\\\",
+    "named": false
+  },
+  {
+    "type": "\\n",
+    "named": false
+  },
+  {
+    "type": "\\r",
+    "named": false
+  },
+  {
+    "type": "\\t",
+    "named": false
+  },
+  {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "^=",
     "named": false
   },
   {
@@ -538,7 +1018,15 @@
     "named": true
   },
   {
+    "type": "export",
+    "named": true
+  },
+  {
     "type": "extern",
+    "named": true
+  },
+  {
+    "type": "float",
     "named": true
   },
   {
@@ -562,11 +1050,19 @@
     "named": true
   },
   {
+    "type": "var",
+    "named": true
+  },
+  {
     "type": "volatile",
     "named": true
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|=",
     "named": false
   },
   {

@@ -36,8 +36,18 @@ module.exports = grammar({
         // Simple terms
         identifier: ($) => choice(/[A-Za-z_][A-Za-z0-9_]*/, seq("@", $.string_literal)),
         // TODO: Escapes
+        string_escape: ($) => choice(
+            "\\n",
+            "\\r",
+            "\\t",
+            "\\\\",
+            "\\'",
+            "\\\"",
+            /\\x[0-9a-fA-F]{2}/,
+            /\\u\{[0-9a-fA-F]{1,6}\}/
+        ),
         string_fragment: ($) => token.immediate(prec(1, /[^"\\]+/)),
-        string_literal: ($) => seq("\"", repeat(choice($.string_fragment)), "\""),
+        string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
 
         comptime: ($) => "comptime",
 
@@ -54,11 +64,14 @@ module.exports = grammar({
             token(numericWithSeparator(/[0-9]/)),
         ),
 
+        float: (_) => token(seq(numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
+
         // Containers
         _container_members: ($) => repeat1(
             choice(
                 seq($.container_field, optional(",")),
-                seq($.container_function)
+                $.container_function,
+                seq($.container_var_decl, ";"),
             ),
         ),
 
@@ -70,9 +83,25 @@ module.exports = grammar({
         // if (1 == 1) 0 else 1
         // some sort of type
         // etc.
+        // Some types:
+        // u8
+        // *u8
+        // struct {...}
+        // *struct {...}
+        // [*]u8
+        // []u8
+        // [*:0]const u8
+        // fn (...) ...
         _expr: ($) => choice(
+            $.identifier,
+
+            $.float,
             $.integer,
-            $._type_expr,
+            $.string_literal,
+
+            $.pointer_type,
+            $.identifier,
+
             $.block_expr,
         ),
 
@@ -86,32 +115,66 @@ module.exports = grammar({
 
         _statement: ($) => seq(
             choice(
-                $.break_statement,
+                $.var_decl,
+                $.break_stmt,
+                $.assign_stmt,
             ),
             ";"
         ),
-        
-        break_statement: $ => seq(
+
+        var_decl: ($) => seq(
+            field("constness", choice($.constant, $.var)),
+            field("name", $.identifier),
+            optional(seq(":", optional(field("type", $._expr)))),
+            optional(field("alignment", $.alignment)),
+            optional(field("value", seq("=", $._expr)))
+        ),
+
+        break_stmt: $ => seq(
             "break",
             optional(seq(":", field("label", $.identifier))),
             optional(field("value", $._expr)),
         ),
 
-        // Types
-        // Some types:
-        // u8
-        // *u8
-        // struct {...}
-        // *struct {...}
-        // [*]u8
-        // []u8
-        // [*:0]const u8
-        // fn (...) ...
-        _type_expr: ($) => choice(
-            $.pointer_type,
-            $.identifier,
+        assignment_operator: $ => choice(
+            "|=",
+            "==",
+            "=>",
+            "!=",
+            "%=",
+            "^=",
+            "+=",
+            "+%",
+            "+%=",
+            "+|",
+            "+|=",
+            "-=",
+            "-%",
+            "-%=",
+            "-|",
+            "-|=",
+            "*=",
+            "**",
+            "*%",
+            "*%=",
+            "*|",
+            "*|=",
+            "/=",
+            "&=",
+            "<=",
+            "<<=",
+            "<<|=",
+            ">=",
+            ">>=",
         ),
 
+        assign_stmt: $ => seq(
+            field("dest", $._expr),
+            field("operator", $.assignment_operator),
+            field("src", $._expr)
+        ),
+
+        // Types
         // Pointer
         one_pointer: (_) => "*",
         many_pointer: ($) => seq("[*", optional(seq(":", field("sentinel", $._expr))), "]"),
@@ -127,6 +190,7 @@ module.exports = grammar({
 
         alignment: ($) => seq("align(", $.integer, ")"),
         allowzero: (_) => "allowzero",
+        var: (_) => "var",
         constant: (_) => "const",
         volatile: (_) => "volatile",
 
@@ -138,7 +202,7 @@ module.exports = grammar({
             // more complicated but ensures we can correct things like like *const const or *const allowzero
             // is this worth it?
             repeat($._pointer_modifier),
-            field("child", $._type_expr),
+            field("child", $._expr),
         ),
 
         // Should comptime fields be handled like this?
@@ -146,12 +210,12 @@ module.exports = grammar({
         container_field: ($) => seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("comptime", $.comptime)),
-            seq(field("name", $.identifier), ":", field("type", $._type_expr)),
+            seq(field("name", $.identifier), ":", field("type", $._expr)),
             optional(field("alignment", $.alignment)),
             optional(field("default", seq("=", $._expr)))
         ),
 
-        function_prototype: ($) => seq(
+        fn_proto: ($) => seq(
             "fn",
             field("name", $.identifier),
             // TODO: params
@@ -163,13 +227,23 @@ module.exports = grammar({
 
         pub: (_) => "pub",
         extern: (_) => "extern",
+        export: (_) => "export",
 
         container_function: ($) => seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("pub", $.pub)),
             optional(field("extern", $.extern)),
-            $.function_prototype,
+            optional(field("export", $.export)),
+            $.fn_proto,
             choice(field("body", $.block), ";")
+        ),
+
+        container_var_decl: ($) => seq(
+            optional(field("documentation", $.doc_comment)),
+            optional(field("pub", $.pub)),
+            optional(field("extern", $.extern)),
+            optional(field("export", $.export)),
+            $.var_decl,
         ),
     }
 });
