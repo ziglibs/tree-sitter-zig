@@ -71,6 +71,42 @@ module.exports = grammar({
             ),
         ),
 
+        struct: ($) => seq(
+            repeat(choice($.extern, $.packed)),
+            "struct",
+            optional(seq(
+                "(",
+                field("backing_integer", $._expr),
+                ")",
+            )),
+            $.struct_body,
+        ),
+        struct_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+
+        enum: ($) => seq(
+            "enum",
+            optional(seq(
+                "(",
+                field("tag_type", $._expr),
+                ")",
+            )),
+            $.enum_body,
+        ),
+        enum_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+
+        inferred_tag_type: _ => "enum",
+        union: ($) => seq(
+            repeat(choice($.extern, $.packed)),
+            "union",
+            optional(seq(
+                "(",
+                field("tag_type", choice($.inferred_tag_type, $._expr)),
+                ")",
+            )),
+            $.enum_body,
+        ),
+        enum_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+
         // Expressions
         // A free-form expression that returns a value, e.g.:
         // 1
@@ -95,6 +131,10 @@ module.exports = grammar({
             $.integer,
             $.string_literal,
 
+            $.struct,
+            $.enum,
+            $.union,
+
             $.pointer_type,
             $.identifier,
             $.field_access,
@@ -103,15 +143,18 @@ module.exports = grammar({
             $.if_expr,
             $.block_expr,
 
+            $.group,
             $.binary_op,
         )),
 
+        group: $ => seq("(", $._expr, ")"),
+
         field_access: $ => prec.right(seq(
             $._expr,
-            repeat1(seq(
+            repeat1(prec(precedence.curly, seq(
                 ".",
                 choice($.call, $.identifier),
-            )),
+            ))),
         )),
 
         arguments: ($) => seq("(", optional(seq(repeat(seq($._expr, ",")), $._expr, optional(","))), ")"),
@@ -289,7 +332,7 @@ module.exports = grammar({
         container_field: ($) => prec(precedence.curly, seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("comptime", $.comptime)),
-            seq(field("name", $.identifier), ":", field("type", $._expr)),
+            seq(field("name", $.identifier), optional(seq(":", field("type", $._expr)))),
             optional(field("alignment", $.alignment)),
             optional(field("default", seq("=", $._expr)))
         )),
@@ -308,6 +351,7 @@ module.exports = grammar({
 
         pub: (_) => "pub",
         extern: (_) => "extern",
+        packed: (_) => "packed",
         export: (_) => "export",
 
         container_function: ($) => seq(

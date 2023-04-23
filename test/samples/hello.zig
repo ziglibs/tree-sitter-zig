@@ -1,12 +1,6 @@
-// pub fn bruh() void {
-//     return;
-// }
+pub const MyUnion = union((enum { a, b, c })) {};
 
-// pub export var abc = 10;
-
-// const abc = struct {};
-
-pub fn bruh() void {
+pub fn main() void {
     // if (1 == 1) {} else if (2 == 2) {} else {}
-    while (true) {} else {}
+    // while (true) {} else {}
 }
