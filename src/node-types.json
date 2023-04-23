@@ -45,105 +45,6 @@
     }
   },
   {
-    "type": "arguments",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "aggregate_init",
-          "named": true
-        },
-        {
-          "type": "array_init",
-          "named": true
-        },
-        {
-          "type": "binary_op",
-          "named": true
-        },
-        {
-          "type": "block_expr",
-          "named": true
-        },
-        {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "enum",
-          "named": true
-        },
-        {
-          "type": "error_set",
-          "named": true
-        },
-        {
-          "type": "field_access",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "for_expr",
-          "named": true
-        },
-        {
-          "type": "group",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expr",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "opaque",
-          "named": true
-        },
-        {
-          "type": "pointer_type",
-          "named": true
-        },
-        {
-          "type": "prefix_op",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "struct",
-          "named": true
-        },
-        {
-          "type": "suffix_op",
-          "named": true
-        },
-        {
-          "type": "union",
-          "named": true
-        },
-        {
-          "type": "while_expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "array_init",
     "named": true,
     "fields": {
@@ -165,6 +66,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -259,6 +164,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -372,6 +281,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -473,6 +386,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -581,6 +498,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -685,6 +606,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -782,11 +707,27 @@
           "named": true
         },
         {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
           "type": "for_expr",
           "named": true
         },
         {
           "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "return_stmt",
           "named": true
         },
         {
@@ -858,6 +799,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -937,6 +882,21 @@
     }
   },
   {
+    "type": "builtin_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expr_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call",
     "named": true,
     "fields": {},
@@ -945,7 +905,7 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "expr_list",
           "named": true
         },
         {
@@ -1077,6 +1037,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1188,6 +1152,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -1428,6 +1396,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -1553,6 +1525,10 @@
           "named": true
         },
         {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -1652,6 +1628,10 @@
           "named": true
         },
         {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
           "type": "call",
           "named": true
         },
@@ -1748,6 +1728,10 @@
         },
         {
           "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
           "named": true
         },
         {
@@ -1895,6 +1879,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -2034,6 +2022,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -2144,6 +2136,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -2248,6 +2244,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -2339,6 +2339,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -2443,6 +2447,10 @@
         },
         {
           "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
           "named": true
         },
         {
@@ -2560,6 +2568,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -2651,6 +2663,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -2755,6 +2771,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -2875,6 +2895,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -3003,6 +3027,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -3150,6 +3178,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -3267,6 +3299,110 @@
     }
   },
   {
+    "type": "return_stmt",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "root",
     "named": true,
     "fields": {},
@@ -3315,6 +3451,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -3442,6 +3582,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -3560,6 +3704,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -3672,6 +3820,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -3831,6 +3983,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -3926,6 +4082,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -4026,6 +4186,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -4133,6 +4297,10 @@
             "named": true
           },
           {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
             "type": "call",
             "named": true
           },
@@ -4224,6 +4392,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -4344,6 +4516,10 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
             "named": true
           },
           {
@@ -4757,6 +4933,10 @@
   {
     "type": "pub",
     "named": true
+  },
+  {
+    "type": "return",
+    "named": false
   },
   {
     "type": "string_fragment",

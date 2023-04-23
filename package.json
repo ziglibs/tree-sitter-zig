@@ -2,7 +2,7 @@
   "name": "tree-sitter-zig",
   "version": "1.0.0",
   "description": "tree-sitter grammar for Zig for use in ZLS",
-  "main": "grammar.js",
+  "main": "bindings/node/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,8 @@
     "nan": "^2.17.0"
   },
   "devDependencies": {
+    "glob": "^10.2.2",
+    "minimist": "^1.2.8",
     "tree-sitter-cli": "^0.20.8"
   }
 }

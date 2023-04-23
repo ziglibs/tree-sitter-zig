@@ -2,6 +2,9 @@ zig-cache
 zig-out
 node_modules
 
+build
+test/invalid_outputs
+
 parser.exp
 parser.lib
 parser.obj

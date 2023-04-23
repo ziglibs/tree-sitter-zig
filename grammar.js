@@ -69,6 +69,25 @@ function numericWithSeparator(regex) {
 
 // TODO -> frame access
 
+const _container_members = $ => seq(
+    repeat(
+        choice(
+            $.container_function,
+            seq($.container_var_decl, ";"),
+        ),
+    ),
+    optional($.container_field_list),
+    optional(seq(
+        ",",
+        repeat1(
+            choice(
+                $.container_function,
+                seq($.container_var_decl, ";"),
+            ),
+        )
+    )),
+);
+
 module.exports = grammar({
     name: "zig",
 
@@ -78,7 +97,7 @@ module.exports = grammar({
     conflicts: ($) => [[$.container_field_list]],
 
     rules: {
-        root: ($) => seq(optional($.container_doc_comment), optional($._container_members)),
+        root: ($) => seq(optional($.container_doc_comment), _container_members($)),
 
         // Comments
         container_doc_comment: (_) =>
@@ -122,26 +141,7 @@ module.exports = grammar({
             optional(","),
         ),
 
-        _container_members: ($) => seq(
-            repeat(
-                choice(
-                    $.container_function,
-                    seq($.container_var_decl, ";"),
-                ),
-            ),
-            $.container_field_list,
-            optional(seq(
-                ",",
-                repeat1(
-                    choice(
-                        $.container_function,
-                        seq($.container_var_decl, ";"),
-                    ),
-                )
-            )),
-        ),
-
-        container_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+        container_body: ($) => seq("{", optional($.container_doc_comment), _container_members($), "}"),
 
         struct: ($) => seq(
             repeat(choice($.extern, $.packed)),
@@ -225,6 +225,7 @@ module.exports = grammar({
             $.identifier,
             $.field_access,
             $.call,
+            $.builtin_call,
 
             $.if_expr,
             $.while_expr,
@@ -271,11 +272,14 @@ module.exports = grammar({
             ))),
         )),
 
-        arguments: ($) => seq("(", optional(seq(repeat(seq($._expr, ",")), $._expr, optional(","))), ")"),
         call: $ => prec.right(seq(
             $.identifier,
-            $.arguments,
+            "(",
+            $.expr_list,
+            ")",
         )),
+
+        builtin_call: $ => seq("@", /[A-Za-z_][A-Za-z0-9_]*/, "(", $.expr_list, ")"),
 
         // Operations
         prefix_operator: _ => prec(precedence.prefix, choice(
@@ -423,6 +427,10 @@ module.exports = grammar({
                         $.var_decl,
                         $.break_stmt,
                         $.assign_stmt,
+                        $.return_stmt,
+                        $.call,
+                        $.builtin_call,
+                        $.field_access,
                     ),
                     ";"
                 ),
@@ -445,6 +453,11 @@ module.exports = grammar({
         break_stmt: $ => seq(
             "break",
             optional(seq(":", field("label", $.identifier))),
+            optional(field("value", $._expr)),
+        ),
+
+        return_stmt: $ => seq(
+            "return",
             optional(field("value", $._expr)),
         ),
 
