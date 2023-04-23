@@ -16,6 +16,59 @@ function numericWithSeparator(regex) {
     return seq(regex, repeat(seq(optional("_"), regex)));
 }
 
+// TODO: Invalidate keywords
+// "addrspace",
+// "align",
+// "allowzero",
+// "and",
+// "anyframe",
+// "anytype",
+// "asm",
+// "async",
+// "await",
+// "break",
+// "callconv",
+// "catch",
+// "comptime",
+// "const",
+// "continue",
+// "defer",
+// "else",
+// "enum",
+// "errdefer",
+// "error",
+// "export",
+// "extern",
+// "fn",
+// "for",
+// "if",
+// "inline",
+// "noalias",
+// "noinline",
+// "nosuspend",
+// "opaque",
+// "or",
+// "orelse",
+// "packed",
+// "pub",
+// "resume",
+// "return",
+// "linksection",
+// "struct",
+// "suspend",
+// "switch",
+// "test",
+// "threadlocal",
+// "try",
+// "union",
+// "unreachable",
+// "usingnamespace",
+// "var",
+// "volatile",
+// "while",
+
+// TODO -> frame access
+
 module.exports = grammar({
     name: "zig",
 
@@ -155,7 +208,7 @@ module.exports = grammar({
         // []u8
         // [*:0]const u8
         // fn (...) ...
-        _expr: ($) => prec.right(choice(
+        _expr: ($) => prec.left(choice(
             $.identifier,
 
             $.float,
@@ -179,10 +232,36 @@ module.exports = grammar({
             $.block_expr,
 
             $.group,
+            $.prefix_op,
+            $.suffix_op,
             $.binary_op,
+
+            $.array_init,
+            $.aggregate_init,
         )),
 
         group: $ => seq("(", $._expr, ")"),
+
+        field_init: $ => seq(
+            ".",
+            $.identifier,
+            "=",
+            $._expr,
+        ),
+        field_init_list: $ => seq(
+            repeat(seq($.field_init, ",")),
+            $.field_init,
+            optional(","),
+        ),
+
+        expr_list: $ => seq(
+            repeat(seq($._expr, ",")),
+            $._expr,
+            optional(","),
+        ),
+
+        array_init: $ => seq("[", field("length", $._expr), "]", field("type", $._expr), "{", $.expr_list, "}"),
+        aggregate_init: $ => seq(choice(field("type", $.identifier), "."), "{", optional(choice($.field_init_list, $.expr_list)), "}"),
 
         field_access: $ => prec.right(seq(
             $._expr,
@@ -199,6 +278,28 @@ module.exports = grammar({
         )),
 
         // Operations
+        prefix_operator: _ => prec(precedence.prefix, choice(
+            "!",
+            "-",
+            "&",
+            "~",
+        )),
+
+        suffix_operator: $ => choice(
+            ".*",
+            ".?",
+        ),
+
+        prefix_op: $ => prec(precedence.prefix, seq(
+            field("operator", $.prefix_operator),
+            field("operand", $._expr),
+        )),
+
+        suffix_op: $ => seq(
+            field("operand", $._expr),
+            field("operator", $.suffix_operator),
+        ),
+
         binary_operator: $ => choice(
             "|",
             "||",

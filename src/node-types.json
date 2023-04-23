@@ -1,5 +1,35 @@
 [
   {
+    "type": "aggregate_init",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "expr_list",
+          "named": true
+        },
+        {
+          "type": "field_init_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "alignment",
     "named": true,
     "fields": {},
@@ -22,6 +52,14 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
         {
           "type": "binary_op",
           "named": true
@@ -79,11 +117,19 @@
           "named": true
         },
         {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
         {
           "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
           "named": true
         },
         {
@@ -98,13 +144,21 @@
     }
   },
   {
-    "type": "assign_stmt",
+    "type": "array_init",
     "named": true,
     "fields": {
-      "dest": {
+      "length": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
           {
             "type": "binary_op",
             "named": true
@@ -162,11 +216,223 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expr_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assign_stmt",
+    "named": true,
+    "fields": {
+      "dest": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -194,6 +460,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -250,11 +524,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -283,6 +565,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -339,11 +629,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -371,6 +669,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -427,11 +733,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -531,6 +845,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -587,11 +909,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -731,6 +1061,14 @@
             "named": false
           },
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -787,11 +1125,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -829,6 +1175,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -885,11 +1239,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1050,6 +1412,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1106,11 +1476,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1151,13 +1529,21 @@
     }
   },
   {
-    "type": "field_access",
+    "type": "expr_list",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
         {
           "type": "binary_op",
           "named": true
@@ -1215,6 +1601,10 @@
           "named": true
         },
         {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1223,11 +1613,228 @@
           "named": true
         },
         {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
           "type": "union",
           "named": true
         },
         {
           "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_init",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_init_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "field_init",
           "named": true
         }
       ]
@@ -1271,6 +1878,14 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
           {
             "type": "binary_op",
             "named": true
@@ -1332,11 +1947,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1395,6 +2018,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1451,11 +2082,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1489,6 +2128,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1545,11 +2192,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1577,6 +2232,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1633,11 +2296,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1655,6 +2326,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1711,6 +2390,10 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "range",
             "named": true
           },
@@ -1720,6 +2403,10 @@
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1742,6 +2429,14 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
         {
           "type": "binary_op",
           "named": true
@@ -1799,11 +2494,19 @@
           "named": true
         },
         {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
         {
           "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
           "named": true
         },
         {
@@ -1841,6 +2544,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1897,11 +2608,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -1919,6 +2638,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1975,11 +2702,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2007,6 +2742,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2063,11 +2806,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2111,6 +2862,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2167,11 +2926,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2223,6 +2990,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2279,11 +3054,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2341,6 +3124,121 @@
         }
       ]
     }
+  },
+  {
+    "type": "prefix_op",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "prefix_operator",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "prefix_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "range",
@@ -2404,6 +3302,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2460,11 +3366,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2512,6 +3426,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2568,11 +3490,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2606,6 +3536,121 @@
     }
   },
   {
+    "type": "suffix_op",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "suffix_operator",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "suffix_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "union",
     "named": true,
     "fields": {
@@ -2613,6 +3658,14 @@
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
           {
             "type": "binary_op",
             "named": true
@@ -2674,11 +3727,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2754,6 +3815,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2810,11 +3879,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2836,6 +3913,14 @@
             "named": false
           },
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2892,11 +3977,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -2920,6 +4013,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2976,11 +4077,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -3008,6 +4117,14 @@
         "required": true,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -3064,11 +4181,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -3086,6 +4211,14 @@
         "required": false,
         "types": [
           {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -3142,11 +4275,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -3184,6 +4325,14 @@
           {
             "type": ":",
             "named": false
+          },
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
           },
           {
             "type": "assign_stmt",
@@ -3246,11 +4395,19 @@
             "named": true
           },
           {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
           {
             "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
             "named": true
           },
           {
@@ -3264,6 +4421,10 @@
         ]
       }
     }
+  },
+  {
+    "type": "!",
+    "named": false
   },
   {
     "type": "!=",
@@ -3386,7 +4547,15 @@
     "named": false
   },
   {
+    "type": ".*",
+    "named": false
+  },
+  {
     "type": "..",
+    "named": false
+  },
+  {
+    "type": ".?",
     "named": false
   },
   {
@@ -3631,6 +4800,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]
