@@ -51,6 +51,10 @@
           "named": true
         },
         {
+          "type": "for_expr",
+          "named": true
+        },
+        {
           "type": "group",
           "named": true
         },
@@ -84,6 +88,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "while_expr",
           "named": true
         }
       ]
@@ -126,6 +134,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -159,6 +171,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -206,6 +222,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -239,6 +259,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -287,6 +311,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -320,6 +348,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -367,6 +399,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -401,6 +437,10 @@
           {
             "type": "union",
             "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
           }
         ]
       }
@@ -428,11 +468,19 @@
           "named": true
         },
         {
+          "type": "for_expr",
+          "named": true
+        },
+        {
           "type": "if_expr",
           "named": true
         },
         {
           "type": "var_decl",
+          "named": true
+        },
+        {
+          "type": "while_expr",
           "named": true
         }
       ]
@@ -511,6 +559,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -544,6 +596,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -703,6 +759,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -736,6 +796,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -793,6 +857,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -826,6 +894,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1006,6 +1078,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1039,6 +1115,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1107,6 +1187,10 @@
           "named": true
         },
         {
+          "type": "for_expr",
+          "named": true
+        },
+        {
           "type": "group",
           "named": true
         },
@@ -1140,6 +1224,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "while_expr",
           "named": true
         }
       ]
@@ -1212,6 +1300,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1249,6 +1341,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1327,6 +1423,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1361,6 +1461,10 @@
           {
             "type": "union",
             "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
           }
         ]
       }
@@ -1374,6 +1478,260 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "for_expr",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "body_captures": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_list",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1413,6 +1771,10 @@
           "named": true
         },
         {
+          "type": "for_expr",
+          "named": true
+        },
+        {
           "type": "group",
           "named": true
         },
@@ -1446,6 +1808,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "while_expr",
           "named": true
         }
       ]
@@ -1503,6 +1869,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1536,6 +1906,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1573,6 +1947,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1606,6 +1984,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1653,6 +2035,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1686,6 +2072,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1749,6 +2139,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1782,6 +2176,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1853,6 +2251,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -1886,6 +2288,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -1934,6 +2340,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "range",
+    "named": true,
+    "fields": {
+      "from": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          }
+        ]
+      },
+      "to": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2000,6 +2432,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -2033,6 +2469,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -2100,6 +2540,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -2133,6 +2577,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -2194,6 +2642,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -2231,6 +2683,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -2326,6 +2782,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -2359,6 +2819,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -2400,6 +2864,10 @@
             "named": true
           },
           {
+            "type": "for_expr",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -2433,6 +2901,364 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "while_expr",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "body_captures": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_list",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "else_captures": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_list",
+            "named": true
+          }
+        ]
+      },
+      "post_expr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "assign_stmt",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "while_expr",
             "named": true
           }
         ]
@@ -2557,6 +3383,10 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "..",
     "named": false
   },
   {
@@ -2732,6 +3562,10 @@
     "named": false
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
     "type": "if",
     "named": false
   },
@@ -2774,6 +3608,10 @@
   {
     "type": "volatile",
     "named": true
+  },
+  {
+    "type": "while",
+    "named": false
   },
   {
     "type": "{",

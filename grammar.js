@@ -174,6 +174,8 @@ module.exports = grammar({
             $.call,
 
             $.if_expr,
+            $.while_expr,
+            $.for_expr,
             $.block_expr,
 
             $.group,
@@ -249,7 +251,6 @@ module.exports = grammar({
         ),
 
         // Branching expressions
-        // TODO: Captures
         if_expr: $ => prec.left(seq(
             "if",
             "(",
@@ -260,6 +261,48 @@ module.exports = grammar({
             optional(seq(
                 "else",
                 optional(field("else_captures", $.capture_list)),
+                field("else", $._expr),
+            ))
+        )),
+
+        while_expr: $ => prec.left(seq(
+            "while",
+            "(",
+            field("condition", $._expr),
+            ")",
+            optional(choice(
+                field("body_captures", $.capture_list),
+                field("post_expr", seq(
+                    ":",
+                    "(",
+                    choice(
+                        $.assign_stmt,
+                        $._expr,
+                    ),
+                    ")"
+                )),
+            )),
+            field("body", $._expr),
+            optional(seq(
+                "else",
+                optional(field("else_captures", $.capture_list)),
+                field("else", $._expr),
+            ))
+        )),
+
+        range: $ => seq(field("from", $.integer), "..", field("to", $.integer)),
+        for_expr: $ => prec.left(seq(
+            "for",
+            "(",
+            field("source", choice(
+                $._expr,
+                $.range,
+            )),
+            ")",
+            field("body_captures", $.capture_list),
+            field("body", $._expr),
+            optional(seq(
+                "else",
                 field("else", $._expr),
             ))
         )),
@@ -282,8 +325,10 @@ module.exports = grammar({
                     ),
                     ";"
                 ),
-                seq(
-                    $.if_expr
+                choice(
+                    $.if_expr,
+                    $.while_expr,
+                    $.for_expr,
                 )
             )
         )),
