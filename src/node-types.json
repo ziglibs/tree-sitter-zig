@@ -20,8 +20,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
+        {
+          "type": "binary_op",
+          "named": true
+        },
         {
           "type": "block_expr",
           "named": true
@@ -40,6 +44,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
           "named": true
         },
         {
@@ -66,6 +74,10 @@
         "required": true,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -83,6 +95,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -114,6 +130,10 @@
         "required": true,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -131,6 +151,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -155,6 +179,119 @@
     "fields": {}
   },
   {
+    "type": "binary_op",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_operator",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "binary_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -168,6 +305,10 @@
         },
         {
           "type": "break_stmt",
+          "named": true
+        },
+        {
+          "type": "if_expr",
           "named": true
         },
         {
@@ -222,6 +363,10 @@
         "required": false,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -239,6 +384,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -277,6 +426,52 @@
     }
   },
   {
+    "type": "capture",
+    "named": true,
+    "fields": {
+      "pointer_of": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_pointer_of",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "capture_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "capture",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "capture_pointer_of",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "container_field",
     "named": true,
     "fields": {
@@ -309,6 +504,10 @@
             "named": false
           },
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -326,6 +525,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -367,6 +570,10 @@
         "required": true,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -384,6 +591,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -533,6 +744,10 @@
       "required": true,
       "types": [
         {
+          "type": "binary_op",
+          "named": true
+        },
+        {
           "type": "block_expr",
           "named": true
         },
@@ -550,6 +765,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
           "named": true
         },
         {
@@ -606,6 +825,10 @@
         "required": true,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -623,6 +846,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -651,7 +878,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "fn_param",
@@ -689,6 +916,10 @@
         "required": true,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -706,6 +937,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -750,18 +985,17 @@
     }
   },
   {
-    "type": "integer",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "many_pointer",
+    "type": "if_expr",
     "named": true,
     "fields": {
-      "sentinel": {
+      "condition": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
           {
             "type": "block_expr",
             "named": true
@@ -780,6 +1014,179 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "else_captures": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_list",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "then_captures": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "integer",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "many_pointer",
+    "named": true,
+    "fields": {
+      "sentinel": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -799,6 +1206,11 @@
     }
   },
   {
+    "type": "one_pointer",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pointer_type",
     "named": true,
     "fields": {
@@ -806,6 +1218,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "binary_op",
+            "named": true
+          },
           {
             "type": "block_expr",
             "named": true
@@ -824,6 +1240,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -922,6 +1342,10 @@
         "required": false,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -939,6 +1363,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -1024,6 +1452,10 @@
         "required": false,
         "types": [
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -1041,6 +1473,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
             "named": true
           },
           {
@@ -1066,6 +1502,10 @@
             "named": false
           },
           {
+            "type": "binary_op",
+            "named": true
+          },
+          {
             "type": "block_expr",
             "named": true
           },
@@ -1086,6 +1526,10 @@
             "named": true
           },
           {
+            "type": "if_expr",
+            "named": true
+          },
+          {
             "type": "integer",
             "named": true
           },
@@ -1102,11 +1546,23 @@
     }
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
   {
+    "type": "%",
+    "named": false
+  },
+  {
     "type": "%=",
+    "named": false
+  },
+  {
+    "type": "&",
     "named": false
   },
   {
@@ -1122,7 +1578,19 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "*%",
+    "named": false
+  },
+  {
     "type": "*%=",
+    "named": false
+  },
+  {
+    "type": "**",
     "named": false
   },
   {
@@ -1130,7 +1598,19 @@
     "named": false
   },
   {
+    "type": "*|",
+    "named": false
+  },
+  {
     "type": "*|=",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "+%",
     "named": false
   },
   {
@@ -1138,7 +1618,15 @@
     "named": false
   },
   {
+    "type": "++",
+    "named": false
+  },
+  {
     "type": "+=",
+    "named": false
+  },
+  {
+    "type": "+|",
     "named": false
   },
   {
@@ -1154,6 +1642,10 @@
     "named": false
   },
   {
+    "type": "-%",
+    "named": false
+  },
+  {
     "type": "-%=",
     "named": false
   },
@@ -1162,11 +1654,19 @@
     "named": false
   },
   {
+    "type": "-|",
+    "named": false
+  },
+  {
     "type": "-|=",
     "named": false
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -1182,11 +1682,27 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
     "type": "<<=",
     "named": false
   },
   {
+    "type": "<<|",
+    "named": false
+  },
+  {
     "type": "<<|=",
+    "named": false
+  },
+  {
+    "type": "<=",
     "named": false
   },
   {
@@ -1195,6 +1711,18 @@
   },
   {
     "type": "==",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -1242,6 +1770,10 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
     "type": "^=",
     "named": false
   },
@@ -1278,6 +1810,10 @@
     "named": true
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "export",
     "named": true
   },
@@ -1294,15 +1830,15 @@
     "named": false
   },
   {
+    "type": "if",
+    "named": false
+  },
+  {
     "type": "line_comment",
     "named": true
   },
   {
     "type": "noalias",
-    "named": true
-  },
-  {
-    "type": "one_pointer",
     "named": true
   },
   {
@@ -1326,7 +1862,15 @@
     "named": false
   },
   {
+    "type": "|",
+    "named": false
+  },
+  {
     "type": "|=",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

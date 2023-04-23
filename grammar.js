@@ -100,7 +100,10 @@ module.exports = grammar({
             $.field_access,
             $.call,
 
+            $.if_expr,
             $.block_expr,
+
+            $.binary_op,
         )),
 
         field_access: $ => prec.right(seq(
@@ -111,10 +114,78 @@ module.exports = grammar({
             )),
         )),
 
-        arguments: ($) => seq("(", repeat(seq($._expr, ",")), $._expr, optional(","), ")"),
+        arguments: ($) => seq("(", optional(seq(repeat(seq($._expr, ",")), $._expr, optional(","))), ")"),
         call: $ => prec.right(seq(
             $.identifier,
             $.arguments,
+        )),
+
+        // Operations
+        binary_operator: $ => choice(
+            "|",
+            "||",
+            "==",
+            "!=",
+            "%",
+            "^",
+            "+",
+            "++",
+            "+%",
+            "+|",
+            "-",
+            "-%",
+            "-|",
+            "*",
+            "**",
+            "*%",
+            "*|",
+            "/",
+            "&",
+            "<",
+            "<=",
+            "<<",
+            "<<|",
+            ">",
+            ">=",
+            ">>",
+        ),
+
+        binary_op: $ => prec.left(seq(
+            field("left", $._expr),
+            field("operator", $.binary_operator),
+            field("right", $._expr),
+        )),
+
+        // TODO: Make this configurable (if/else can only have max one capture, switch max 2, etc.)
+
+        capture_pointer_of: _ => "*",
+
+        capture: $ => seq(
+            optional(field("pointer_of", $.capture_pointer_of)),
+            $.identifier
+        ),
+
+        capture_list: $ => seq(
+            "|",
+            repeat(seq($.capture, ",")),
+            $.capture,
+            "|"
+        ),
+
+        // Branching expressions
+        // TODO: Captures
+        if_expr: $ => prec.left(seq(
+            "if",
+            "(",
+            field("condition", $._expr),
+            ")",
+            optional(field("then_captures", $.capture_list)),
+            field("then", $._expr),
+            optional(seq(
+                "else",
+                optional(field("else_captures", $.capture_list)),
+                field("else", $._expr),
+            ))
         )),
 
         // Block
@@ -127,11 +198,18 @@ module.exports = grammar({
 
         _statement: ($) => prec(precedence.curly, seq(
             choice(
-                $.var_decl,
-                $.break_stmt,
-                $.assign_stmt,
-            ),
-            ";"
+                seq(
+                    choice(
+                        $.var_decl,
+                        $.break_stmt,
+                        $.assign_stmt,
+                    ),
+                    ";"
+                ),
+                seq(
+                    $.if_expr
+                )
+            )
         )),
 
         var_decl: ($) => seq(
@@ -151,7 +229,6 @@ module.exports = grammar({
         assignment_operator: $ => choice(
             "=",
             "|=",
-            "==",
             "%=",
             "^=",
             "+=",
@@ -218,7 +295,7 @@ module.exports = grammar({
         )),
         
         fn_param: ($) => seq(optional(choice(field("noalias", $.noalias), field("comptime", $.comptime))), field("name", $.identifier), ":", field("type", choice($._expr, $.noalias))),
-        fn_param_list: ($) => seq("(", repeat(seq($.fn_param, ",")), $.fn_param, optional(","), ")"),
+        fn_param_list: ($) => seq("(", optional(seq(repeat(seq($.fn_param, ",")), $.fn_param, optional(","))), ")"),
 
         fn_proto: ($) => seq(
             "fn",
