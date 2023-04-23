@@ -22,7 +22,7 @@ module.exports = grammar({
     externals: (_) => [],
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
-    conflicts: ($) => [],
+    conflicts: ($) => [[$.container_field_list]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), optional($._container_members)),
@@ -63,13 +63,32 @@ module.exports = grammar({
         float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
 
         // Containers
-        _container_members: ($) => repeat1(
-            choice(
-                seq($.container_field, optional(",")),
-                $.container_function,
-                seq($.container_var_decl, ";"),
-            ),
+        container_field_list: $ => seq(
+            repeat(seq($.container_field, ",")),
+            $.container_field,
+            optional(","),
         ),
+
+        _container_members: ($) => seq(
+            repeat(
+                choice(
+                    $.container_function,
+                    seq($.container_var_decl, ";"),
+                ),
+            ),
+            $.container_field_list,
+            optional(seq(
+                ",",
+                repeat1(
+                    choice(
+                        $.container_function,
+                        seq($.container_var_decl, ";"),
+                    ),
+                )
+            )),
+        ),
+
+        container_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
 
         struct: ($) => seq(
             repeat(choice($.extern, $.packed)),
@@ -79,9 +98,8 @@ module.exports = grammar({
                 field("backing_integer", $._expr),
                 ")",
             )),
-            $.struct_body,
+            $.container_body,
         ),
-        struct_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
 
         enum: ($) => seq(
             "enum",
@@ -90,9 +108,8 @@ module.exports = grammar({
                 field("tag_type", $._expr),
                 ")",
             )),
-            $.enum_body,
-        ),
-        enum_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+            $.container_body,
+        ),        
 
         inferred_tag_type: _ => "enum",
         union: ($) => seq(
@@ -103,9 +120,23 @@ module.exports = grammar({
                 field("tag_type", choice($.inferred_tag_type, $._expr)),
                 ")",
             )),
-            $.enum_body,
+            $.container_body,
         ),
-        enum_body: ($) => seq("{", optional($.container_doc_comment), optional($._container_members), "}"),
+
+        opaque: ($) => seq(
+            repeat(choice($.extern, $.packed)),
+            "opaque",
+            $.container_body,
+        ),
+
+        error_set: ($) => seq(
+            "error",
+            "{",
+            repeat(seq($.identifier, ",")),
+            $.identifier,
+            optional(","),
+            "}",
+        ),
 
         // Expressions
         // A free-form expression that returns a value, e.g.:
@@ -134,6 +165,8 @@ module.exports = grammar({
             $.struct,
             $.enum,
             $.union,
+            $.opaque,
+            $.error_set,
 
             $.pointer_type,
             $.identifier,
