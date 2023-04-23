@@ -2,13 +2,22 @@
 //     return;
 // }
 
-pub export var abc = 10;
+// pub export var abc = 10;
 
 // const abc = struct {};
 
-pub fn bruh() void {
-    var bruh = "hi\n\r\x12\u{12312}";
-    bruh *= "bye";
-
-    // var u8 = 10;
+pub fn bruh(
+    abc: u8,
+    def: u8,
+) void {
+    _ = abc;
+    // _ = abc.def;
+    // const z = &.{ .a = 10 }.a;
+    // _ = z;
+    _ = a.b.c(
+        1,
+        2,
+        3,
+    );
+    _ = a();
 }

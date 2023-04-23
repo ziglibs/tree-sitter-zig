@@ -49,22 +49,18 @@ module.exports = grammar({
         string_fragment: ($) => token.immediate(prec(1, /[^"\\]+/)),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
 
+        noalias: ($) => "noalias",
+        anytype: ($) => "anytype",
         comptime: ($) => "comptime",
 
-        // integer: (_) => choice(
-        //     token(seq("0b", seq(/[01]/, repeat(seq(optional("_"), /[01]/))))),
-        //     token(seq("0o", seq(/[0-7]/, repeat(seq(optional("_"), /[0-7]/))))),
-        //     token(seq("0x", seq(/[0-9a-fA-F]/, repeat(seq(optional("_"), /[0-9a-fA-F]/))))),
-        //     token(seq(/[0-9]/, repeat(seq(optional("_"), /[0-9]/)))),
-        // ),
-        integer: (_) => choice(
+        integer: (_) => seq(optional("-"), choice(
             token(seq("0b", numericWithSeparator(/[01]/))),
             token(seq("0o", numericWithSeparator(/[0-7]/))),
             token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/))),
             token(numericWithSeparator(/[0-9]/)),
-        ),
+        )),
 
-        float: (_) => token(seq(numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
+        float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
 
         // Containers
         _container_members: ($) => repeat1(
@@ -92,7 +88,7 @@ module.exports = grammar({
         // []u8
         // [*:0]const u8
         // fn (...) ...
-        _expr: ($) => choice(
+        _expr: ($) => prec.right(choice(
             $.identifier,
 
             $.float,
@@ -101,9 +97,25 @@ module.exports = grammar({
 
             $.pointer_type,
             $.identifier,
+            $.field_access,
+            $.call,
 
             $.block_expr,
-        ),
+        )),
+
+        field_access: $ => prec.right(seq(
+            $._expr,
+            repeat1(seq(
+                ".",
+                choice($.call, $.identifier),
+            )),
+        )),
+
+        arguments: ($) => seq("(", repeat(seq($._expr, ",")), $._expr, optional(","), ")"),
+        call: $ => prec.right(seq(
+            $.identifier,
+            $.arguments,
+        )),
 
         // Block
         block_expr: ($) => seq(
@@ -113,14 +125,14 @@ module.exports = grammar({
 
         block: ($) => seq("{", repeat($._statement), "}"),
 
-        _statement: ($) => seq(
+        _statement: ($) => prec(precedence.curly, seq(
             choice(
                 $.var_decl,
                 $.break_stmt,
                 $.assign_stmt,
             ),
             ";"
-        ),
+        )),
 
         var_decl: ($) => seq(
             field("constness", choice($.constant, $.var)),
@@ -137,34 +149,24 @@ module.exports = grammar({
         ),
 
         assignment_operator: $ => choice(
+            "=",
             "|=",
             "==",
-            "=>",
-            "!=",
             "%=",
             "^=",
             "+=",
-            "+%",
             "+%=",
-            "+|",
             "+|=",
             "-=",
-            "-%",
             "-%=",
-            "-|",
             "-|=",
             "*=",
-            "**",
-            "*%",
             "*%=",
-            "*|",
             "*|=",
             "/=",
             "&=",
-            "<=",
             "<<=",
             "<<|=",
-            ">=",
             ">>=",
         ),
 
@@ -196,30 +198,32 @@ module.exports = grammar({
 
         _pointer_modifier: ($) => choice($.allowzero, $.alignment, $.constant, $.volatile),
 
-        pointer_type: ($) => seq(
+        pointer_type: ($) => prec.left(seq(
             field("size", $._pointer_size),
             // NOTE: Modifiers are defined as order-independent which makes stuff a little
             // more complicated but ensures we can correct things like like *const const or *const allowzero
             // is this worth it?
             repeat($._pointer_modifier),
             field("child", $._expr),
-        ),
+        )),
 
         // Should comptime fields be handled like this?
         // They're fundamentally different as they require default values
-        container_field: ($) => seq(
+        container_field: ($) => prec(precedence.curly, seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("comptime", $.comptime)),
             seq(field("name", $.identifier), ":", field("type", $._expr)),
             optional(field("alignment", $.alignment)),
             optional(field("default", seq("=", $._expr)))
-        ),
+        )),
+        
+        fn_param: ($) => seq(optional(choice(field("noalias", $.noalias), field("comptime", $.comptime))), field("name", $.identifier), ":", field("type", choice($._expr, $.noalias))),
+        fn_param_list: ($) => seq("(", repeat(seq($.fn_param, ",")), $.fn_param, optional(","), ")"),
 
         fn_proto: ($) => seq(
             "fn",
             field("name", $.identifier),
-            // TODO: params
-            "()",
+            $.fn_param_list,
             optional(field("alignment", $.alignment)),
             field("return_type", $._expr),
             // TODO: callconv

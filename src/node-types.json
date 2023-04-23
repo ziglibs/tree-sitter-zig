@@ -15,6 +15,49 @@
     }
   },
   {
+    "type": "arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_stmt",
     "named": true,
     "fields": {
@@ -24,6 +67,14 @@
         "types": [
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -64,6 +115,14 @@
         "types": [
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -167,6 +226,14 @@
             "named": true
           },
           {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -188,6 +255,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -224,6 +310,14 @@
           },
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -274,6 +368,14 @@
         "types": [
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -423,6 +525,142 @@
     }
   },
   {
+    "type": "field_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fn_param",
+    "named": true,
+    "fields": {
+      "comptime": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "comptime",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "noalias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "noalias",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "noalias",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "fn_param_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fn_param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "fn_proto",
     "named": true,
     "fields": {
@@ -455,6 +693,14 @@
             "named": true
           },
           {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -476,6 +722,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fn_param_list",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -508,6 +764,14 @@
         "types": [
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -544,6 +808,14 @@
         "types": [
           {
             "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
             "named": true
           },
           {
@@ -654,6 +926,14 @@
             "named": true
           },
           {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -748,6 +1028,14 @@
             "named": true
           },
           {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -782,6 +1070,14 @@
             "named": true
           },
           {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
             "type": "float",
             "named": true
           },
@@ -806,10 +1102,6 @@
     }
   },
   {
-    "type": "!=",
-    "named": false
-  },
-  {
     "type": "\"",
     "named": false
   },
@@ -822,7 +1114,7 @@
     "named": false
   },
   {
-    "type": "()",
+    "type": "(",
     "named": false
   },
   {
@@ -830,15 +1122,7 @@
     "named": false
   },
   {
-    "type": "*%",
-    "named": false
-  },
-  {
     "type": "*%=",
-    "named": false
-  },
-  {
-    "type": "**",
     "named": false
   },
   {
@@ -846,15 +1130,7 @@
     "named": false
   },
   {
-    "type": "*|",
-    "named": false
-  },
-  {
     "type": "*|=",
-    "named": false
-  },
-  {
-    "type": "+%",
     "named": false
   },
   {
@@ -866,10 +1142,6 @@
     "named": false
   },
   {
-    "type": "+|",
-    "named": false
-  },
-  {
     "type": "+|=",
     "named": false
   },
@@ -878,7 +1150,7 @@
     "named": false
   },
   {
-    "type": "-%",
+    "type": "-",
     "named": false
   },
   {
@@ -890,11 +1162,11 @@
     "named": false
   },
   {
-    "type": "-|",
+    "type": "-|=",
     "named": false
   },
   {
-    "type": "-|=",
+    "type": ".",
     "named": false
   },
   {
@@ -918,23 +1190,11 @@
     "named": false
   },
   {
-    "type": "<=",
-    "named": false
-  },
-  {
     "type": "=",
     "named": false
   },
   {
     "type": "==",
-    "named": false
-  },
-  {
-    "type": "=>",
-    "named": false
-  },
-  {
-    "type": ">=",
     "named": false
   },
   {
@@ -1035,6 +1295,10 @@
   },
   {
     "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "noalias",
     "named": true
   },
   {
