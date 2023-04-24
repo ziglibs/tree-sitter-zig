@@ -70,21 +70,11 @@ function numericWithSeparator(regex) {
 // TODO -> frame access
 
 const _container_members = $ => seq(
-    repeat(
-        choice(
-            $.container_function,
-            seq($.container_var_decl, ";"),
-        ),
-    ),
+    repeat($._non_field_container_members),
     optional($.container_field_list),
     optional(seq(
         ",",
-        repeat1(
-            choice(
-                $.container_function,
-                seq($.container_var_decl, ";"),
-            ),
-        )
+        repeat1($._non_field_container_members)
     )),
 );
 
@@ -95,10 +85,18 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.container_field_list], [$.block_expr]],
+    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.while_expr], [$.for_expr]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
+
+        _non_field_container_members: $ => choice(
+            $.container_function,
+            seq($.container_var_decl, ";"),
+            $.test,
+        ),
+
+        test: $ => seq("test", field("name", choice($.identifier, $.string_literal)), $.block),
 
         // Comments
         container_doc_comment: (_) =>
@@ -195,6 +193,18 @@ module.exports = grammar({
             "}",
         ),
 
+        one_error: ($) => seq(
+            "error",
+            ".",
+            $.identifier,
+        ),
+
+        error_union: ($) => seq(
+            optional(field("error_set", $._expr)),
+            "!",
+            field("payload", $._expr),
+        ),
+
         // Expressions
         // A free-form expression that returns a value, e.g.:
         // 1
@@ -225,7 +235,10 @@ module.exports = grammar({
             $.union,
             $.opaque,
             $.error_set,
+            $.one_error,
+            $.error_union,
 
+            $.optional_type,
             $.pointer_type,
             $.identifier,
             $.field_access,
@@ -314,6 +327,8 @@ module.exports = grammar({
             field("operator", $.suffix_operator),
         ),
 
+        // TODO: Fix binary op precedence
+
         binary_operator: $ => choice(
             "|",
             "||",
@@ -343,11 +358,11 @@ module.exports = grammar({
             ">>",
         ),
 
-        binary_op: $ => prec.left(seq(
+        binary_op: $ => prec.left(prec(precedence.comparative, seq(
             field("left", $._expr),
             field("operator", $.binary_operator),
             field("right", $._expr),
-        )),
+        ))),
 
         array_access_op: $ => seq(field("operand", $._expr), "[", field("element", $._expr), "]"),
         slice_op: $ => seq(field("operand", $._expr), "[", field("start", $._expr), "..", optional(field("end", $._expr)), optional(seq(":", field("sentinel", $._expr))), "]"),
@@ -384,6 +399,7 @@ module.exports = grammar({
         )),
 
         while_expr: $ => prec.left(seq(
+            optional(seq(field("label", $.identifier), ":")),
             "while",
             "(",
             field("condition", $._expr),
@@ -409,13 +425,25 @@ module.exports = grammar({
         )),
 
         range: $ => seq(field("from", $.integer), "..", field("to", $.integer)),
-        for_expr: $ => prec.left(seq(
-            "for",
-            "(",
-            field("source", choice(
+        for_sources: $ => seq(
+            choice(
                 $._expr,
                 $.range,
+            ),
+            repeat(seq(
+                ",",
+                choice(
+                    $._expr,
+                    $.range,
+                )
             )),
+            optional(",")
+        ),
+        for_expr: $ => prec.left(seq(
+            optional(seq(field("label", $.identifier), ":")),
+            "for",
+            "(",
+            field("sources", $.for_sources),
             ")",
             field("body_captures", $.capture_list),
             field("body", $._expr),
@@ -439,6 +467,7 @@ module.exports = grammar({
                     choice(
                         $.var_decl,
                         $.break_stmt,
+                        $.continue_stmt,
                         $.assign_stmt,
                         $.return_stmt,
                         // TODO: Invalidate if (...){} by cherrypicking valid expressions
@@ -466,6 +495,11 @@ module.exports = grammar({
             "break",
             optional(seq(":", field("label", $.identifier))),
             optional(field("value", $._expr)),
+        ),
+
+        continue_stmt: $ => seq(
+            "continue",
+            optional(seq(":", field("label", $.identifier))),
         ),
 
         return_stmt: $ => seq(
@@ -531,6 +565,8 @@ module.exports = grammar({
             repeat($._pointer_modifier),
             field("child", $._expr),
         )),
+
+        optional_type: ($) => prec.left(seq("?", $._expr)),
 
         // Should comptime fields be handled like this?
         // They're fundamentally different as they require default values
