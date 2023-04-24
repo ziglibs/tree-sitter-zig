@@ -85,7 +85,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers]],
+    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers], [$._expr, $.comptime_stmt]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
@@ -503,6 +503,7 @@ module.exports = grammar({
                     $.if_expr,
                     $.while_expr,
                     $.for_expr,
+                    $.comptime_stmt,
                 )
             )
         )),
@@ -556,6 +557,17 @@ module.exports = grammar({
             field("dest", $._expr),
             field("operator", $.assignment_operator),
             field("src", $._expr)
+        ),
+
+        comptime_stmt: $ => seq(
+            "comptime",
+            choice(
+                seq($.var_decl, ";"),
+                seq($.assign_stmt, ";"),
+                seq($.return_stmt, ";"),
+                seq($.block_expr),
+                seq($._expr, ";"),
+            ),
         ),
 
         // Types
