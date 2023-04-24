@@ -1306,37 +1306,41 @@
       ]
     },
     "error_union": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "error_set",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_expr"
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "error_set",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expr"
+                }
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "BLANK"
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "!"
+          },
+          {
+            "type": "FIELD",
+            "name": "payload",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expr"
             }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "!"
-        },
-        {
-          "type": "FIELD",
-          "name": "payload",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expr"
           }
-        }
-      ]
+        ]
+      }
     },
     "_expr": {
       "type": "PREC_LEFT",
@@ -3908,6 +3912,19 @@
     ],
     [
       "block_expr"
+    ],
+    [
+      "asm_out"
+    ],
+    [
+      "asm_in"
+    ],
+    [
+      "asm_clobbers"
+    ],
+    [
+      "_expr",
+      "comptime_stmt"
     ],
     [
       "while_expr"

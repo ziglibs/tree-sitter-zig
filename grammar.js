@@ -85,7 +85,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers], [$._expr, $.comptime_stmt]],
+    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers], [$._expr, $.comptime_stmt], [$.while_expr], [$.for_expr]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
@@ -220,11 +220,11 @@ module.exports = grammar({
             $.identifier,
         ),
 
-        error_union: ($) => seq(
+        error_union: ($) => prec.left(seq(
             optional(field("error_set", $._expr)),
             "!",
             field("payload", $._expr),
-        ),
+        )),
 
         // Expressions
         // A free-form expression that returns a value, e.g.:
