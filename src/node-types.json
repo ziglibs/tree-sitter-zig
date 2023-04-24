@@ -89,6 +89,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -208,6 +212,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -339,6 +347,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -458,6 +470,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -599,6 +615,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -728,6 +748,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -864,6 +888,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -993,6 +1021,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -1138,6 +1170,10 @@
         },
         {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
           "named": true
         },
         {
@@ -1309,6 +1345,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -1594,6 +1634,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -1733,6 +1777,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -2017,6 +2065,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -2111,6 +2163,21 @@
     }
   },
   {
+    "type": "enum_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "error_set",
     "named": true,
     "fields": {},
@@ -2167,6 +2234,10 @@
         },
         {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
           "named": true
         },
         {
@@ -2316,6 +2387,10 @@
           "named": true
         },
         {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
           "type": "error_set",
           "named": true
         },
@@ -2440,6 +2515,10 @@
         },
         {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
           "named": true
         },
         {
@@ -2615,6 +2694,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -2731,6 +2814,124 @@
           }
         ]
       },
+      "callconv": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2779,6 +2980,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -2920,6 +3125,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -3049,6 +3258,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -3331,6 +3544,10 @@
           "named": true
         },
         {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
           "type": "error_set",
           "named": true
         },
@@ -3473,6 +3690,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -3592,6 +3813,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -3724,6 +3949,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -3872,6 +4101,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -4173,6 +4406,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -4345,6 +4582,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -4514,6 +4755,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -4673,6 +4918,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -4792,6 +5041,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -4917,6 +5170,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -5036,6 +5293,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -5164,6 +5425,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -5319,6 +5584,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -5462,6 +5731,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -5635,6 +5908,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -5822,6 +6099,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -5945,6 +6226,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -6073,6 +6358,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -6208,6 +6497,10 @@
             "named": true
           },
           {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
             "type": "error_set",
             "named": true
           },
@@ -6327,6 +6620,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -6485,6 +6782,10 @@
           },
           {
             "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
             "named": true
           },
           {
@@ -6842,6 +7143,10 @@
   {
     "type": "c_pointer",
     "named": true
+  },
+  {
+    "type": "callconv",
+    "named": false
   },
   {
     "type": "char_fragment",

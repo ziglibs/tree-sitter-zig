@@ -122,6 +122,8 @@ module.exports = grammar({
 
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
+        // TODO(sno2): why is just `.` allowed?
+        enum_literal: ($) => seq(".", $.identifier),
 
         noalias: ($) => "noalias",
         anytype: ($) => "anytype",
@@ -229,6 +231,7 @@ module.exports = grammar({
             $.integer,
             $.char_literal,
             $.string_literal,
+            $.enum_literal,
 
             $.struct,
             $.enum,
@@ -586,8 +589,8 @@ module.exports = grammar({
             field("name", $.identifier),
             $.fn_param_list,
             optional(field("alignment", $.alignment)),
+            optional(seq("callconv", "(", field("callconv", $._expr), ")")),
             field("return_type", $._expr),
-            // TODO: callconv
         ),
 
         pub: (_) => "pub",
