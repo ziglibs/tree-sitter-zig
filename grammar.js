@@ -85,7 +85,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.while_expr], [$.for_expr]],
+    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers], [$._expr, $.comptime_stmt], [$.while_expr], [$.for_expr]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
@@ -122,6 +122,27 @@ module.exports = grammar({
 
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
+        multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
+        // TODO(sno2): why is just `.` allowed?
+        enum_literal: ($) => seq(".", $.identifier),
+
+        asm_out_part: ($) => seq("[", $.identifier, "]", $.string_literal, "(", $.identifier, ")"),
+        asm_out: ($) => seq(":", $.asm_out_part, repeat(seq(",", $.asm_out_part))),
+        
+        asm_in_part: ($) => seq("[", $.identifier, "]", $.string_literal, "(", $._expr, ")"),
+        asm_in: ($) => seq(":", $.asm_in_part, repeat(seq(",", $.asm_in_part))),
+      
+        asm_clobbers: ($) => seq(":", $.string_literal, repeat(seq(",", $.string_literal))),
+
+        asm: ($) => seq("asm", optional("volatile"), "(", field("source", $._expr), optional(seq(
+            $.asm_out,
+            optional(","),
+            optional(seq(
+                $.asm_in,
+                optional(","),
+                optional(seq($.asm_clobbers, optional(","))),
+            ))),
+        ), ")"),
 
         noalias: ($) => "noalias",
         anytype: ($) => "anytype",
@@ -199,11 +220,11 @@ module.exports = grammar({
             $.identifier,
         ),
 
-        error_union: ($) => seq(
+        error_union: ($) => prec.left(seq(
             optional(field("error_set", $._expr)),
             "!",
             field("payload", $._expr),
-        ),
+        )),
 
         // Expressions
         // A free-form expression that returns a value, e.g.:
@@ -229,6 +250,9 @@ module.exports = grammar({
             $.integer,
             $.char_literal,
             $.string_literal,
+            $.multi_string_literal,
+            $.enum_literal,
+            $.asm,
 
             $.struct,
             $.enum,
@@ -479,6 +503,7 @@ module.exports = grammar({
                     $.if_expr,
                     $.while_expr,
                     $.for_expr,
+                    $.comptime_stmt,
                 )
             )
         )),
@@ -534,12 +559,23 @@ module.exports = grammar({
             field("src", $._expr)
         ),
 
+        comptime_stmt: $ => seq(
+            "comptime",
+            choice(
+                seq($.var_decl, ";"),
+                seq($.assign_stmt, ";"),
+                seq($.return_stmt, ";"),
+                seq($.block_expr),
+                seq($._expr, ";"),
+            ),
+        ),
+
         // Types
         // Pointer
         one_pointer: (_) => "*",
-        many_pointer: ($) => seq("[*", optional(seq(":", field("sentinel", $._expr))), "]"),
+        many_pointer: ($) => seq("[", "*", optional(seq(":", field("sentinel", $._expr))), "]"),
         slice_pointer: ($) => seq("[", optional(seq(":", field("sentinel", $._expr))), "]"),
-        c_pointer: (_) => "[*c]",
+        c_pointer: (_) => seq("[", "*", "c", "]"),
 
         _pointer_size: ($) => choice(
             $.one_pointer,
@@ -548,7 +584,7 @@ module.exports = grammar({
             $.c_pointer,
         ),
 
-        alignment: ($) => seq("align(", $.integer, ")"),
+        alignment: ($) => seq("align", "(", $.integer, ")"),
         allowzero: (_) => "allowzero",
         var: (_) => "var",
         constant: (_) => "const",
@@ -586,8 +622,8 @@ module.exports = grammar({
             field("name", $.identifier),
             $.fn_param_list,
             optional(field("alignment", $.alignment)),
+            optional(seq("callconv", "(", field("callconv", $._expr), ")")),
             field("return_type", $._expr),
-            // TODO: callconv
         ),
 
         pub: (_) => "pub",
