@@ -132,7 +132,7 @@ module.exports = grammar({
         asm_in_part: ($) => seq("[", $.identifier, "]", $.string_literal, "(", $._expr, ")"),
         asm_in: ($) => seq(":", $.asm_in_part, repeat(seq(",", $.asm_in_part))),
       
-        asm_clobbers: ($) => seq(":", repeat(seq($.string_literal, ",")), $.string_literal, optional(",")),
+        asm_clobbers: ($) => seq(":", $.string_literal, repeat(seq(",", $.string_literal))),
 
         asm: ($) => seq("asm", optional("volatile"), "(", field("source", $._expr), optional(seq(
             $.asm_out,
