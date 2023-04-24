@@ -189,6 +189,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -344,6 +348,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -511,6 +519,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -666,6 +678,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -843,6 +859,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -998,6 +1018,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -1162,6 +1186,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -1377,6 +1405,10 @@
           "named": true
         },
         {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
           "type": "try_expr",
           "named": true
         },
@@ -1574,6 +1606,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -1739,6 +1775,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -1911,6 +1951,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -2076,6 +2120,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -2261,6 +2309,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
           "named": true
         },
         {
@@ -2464,6 +2516,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -2716,6 +2772,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -2874,6 +2934,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -2974,6 +3038,10 @@
           "named": true
         },
         {
+          "type": "continue_stmt",
+          "named": true
+        },
+        {
           "type": "enum",
           "named": true
         },
@@ -3063,6 +3131,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
           "named": true
         },
         {
@@ -3307,6 +3379,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -3482,6 +3558,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -3812,6 +3892,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -4016,6 +4100,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -4171,6 +4259,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -4335,6 +4427,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
           "named": true
         },
         {
@@ -4520,6 +4616,10 @@
           "named": true
         },
         {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
           "type": "try_expr",
           "named": true
         },
@@ -4680,6 +4780,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
           "named": true
         },
         {
@@ -4895,6 +4999,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -5084,6 +5192,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -5249,6 +5361,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -5426,6 +5542,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -5591,6 +5711,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -5782,6 +5906,10 @@
           "named": true
         },
         {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
           "type": "try_expr",
           "named": true
         },
@@ -5942,6 +6070,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
           "named": true
         },
         {
@@ -6123,6 +6255,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -6278,6 +6414,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -6446,6 +6586,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -6630,6 +6774,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -6845,6 +6993,10 @@
           "named": true
         },
         {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
           "type": "try_expr",
           "named": true
         },
@@ -7008,6 +7160,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -7163,6 +7319,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -7327,6 +7487,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -7538,6 +7702,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -7743,6 +7911,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -7942,6 +8114,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -8097,6 +8273,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -8258,6 +8438,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -8413,6 +8597,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -8577,6 +8765,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -8768,6 +8960,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -8950,6 +9146,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -8983,6 +9183,867 @@
     "type": "suffix_operator",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "switch_branch",
+    "named": true,
+    "fields": {
+      "is_inline": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "inline",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "error_union",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "multi_string_literal",
+          "named": true
+        },
+        {
+          "type": "one_error",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "slice_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_condition",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
+          "type": "try_expr",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switch_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "error_union",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "multi_string_literal",
+          "named": true
+        },
+        {
+          "type": "one_error",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "slice_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
+          "type": "switch_range",
+          "named": true
+        },
+        {
+          "type": "try_expr",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switch_expr",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "switch_branch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switch_range",
+    "named": true,
+    "fields": {
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "test",
@@ -9159,6 +10220,10 @@
           "named": true
         },
         {
+          "type": "switch_expr",
+          "named": true
+        },
+        {
           "type": "try_expr",
           "named": true
         },
@@ -9323,6 +10388,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -9542,6 +10611,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -9701,6 +10774,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -9873,6 +10950,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -10041,6 +11122,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -10196,6 +11281,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "switch_expr",
             "named": true
           },
           {
@@ -10393,6 +11482,10 @@
             "named": true
           },
           {
+            "type": "switch_expr",
+            "named": true
+          },
+          {
             "type": "try_expr",
             "named": true
           },
@@ -10553,6 +11646,10 @@
     "named": false
   },
   {
+    "type": "...",
+    "named": false
+  },
+  {
     "type": ".?",
     "named": false
   },
@@ -10602,6 +11699,10 @@
   },
   {
     "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
     "named": false
   },
   {
@@ -10757,6 +11858,10 @@
     "named": false
   },
   {
+    "type": "inline",
+    "named": true
+  },
+  {
     "type": "line_comment",
     "named": true
   },
@@ -10790,6 +11895,10 @@
   },
   {
     "type": "struct",
+    "named": false
+  },
+  {
+    "type": "switch",
     "named": false
   },
   {

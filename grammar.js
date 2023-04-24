@@ -278,6 +278,7 @@ module.exports = grammar({
             $.if_expr,
             $.while_expr,
             $.for_expr,
+            $.switch_expr,
             $.block_expr,
 
             $.group,
@@ -500,6 +501,31 @@ module.exports = grammar({
             ))
         )),
 
+        // A singular switch condition
+        switch_range: ($) => seq(field("start", $._expr), "...", field("end", $._expr)),
+        switch_condition: ($) => choice($.switch_range, $._expr),
+        switch_branch: ($) => prec.left(seq(
+            optional(field("is_inline", $.inline)),
+            $.switch_condition,
+            repeat(seq(",", $.switch_condition)),
+            optional(","),
+            "=>",
+            $._expr,
+        )),
+        switch_expr: ($) => prec.left(seq(
+            "switch",
+            "(",
+            field("value", $._expr),
+            ")",
+            "{",
+            optional(seq(
+                $.switch_branch,
+                repeat(seq(",", $.switch_branch)),
+                optional(","),
+            )),
+            "}",
+        )),
+
         // Block
         block_expr: ($) => seq(
             optional(seq(field("label", $.identifier), ":")),
@@ -516,6 +542,7 @@ module.exports = grammar({
                         $.break_stmt,
                         $.continue_stmt,
                         $.assign_stmt,
+                        $.return_expr,
                         // TODO: Invalidate if (...){} by cherrypicking valid expressions
                         $._expr,
                     ),
@@ -525,6 +552,7 @@ module.exports = grammar({
                     $.if_expr,
                     $.while_expr,
                     $.for_expr,
+                    $.switch_expr,
                     $.comptime_stmt,
                 )
             )
@@ -591,6 +619,8 @@ module.exports = grammar({
             choice(
                 seq($.var_decl, ";"),
                 seq($.assign_stmt, ";"),
+                seq($.return_expr, ";"),
+                seq($.continue_stmt, ";"),
                 seq($.block_expr),
                 seq($._expr, ";"),
             ),
@@ -616,6 +646,7 @@ module.exports = grammar({
         constant: (_) => "const",
         volatile: (_) => "volatile",
         unreachable: (_) => "unreachable",
+        inline: (_) => "inline",
 
         _pointer_modifier: ($) => choice($.allowzero, $.alignment, $.constant, $.volatile),
 
