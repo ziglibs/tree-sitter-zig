@@ -85,7 +85,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.while_expr], [$.for_expr]],
+    conflicts: ($) => [[$.container_field_list], [$.block_expr], [$.asm_out], [$.asm_in], [$.asm_clobbers]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
@@ -125,6 +125,24 @@ module.exports = grammar({
         multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
         // TODO(sno2): why is just `.` allowed?
         enum_literal: ($) => seq(".", $.identifier),
+
+        asm_out_part: ($) => seq("[", $.identifier, "]", $.string_literal, "(", $.identifier, ")"),
+        asm_out: ($) => seq(":", $.asm_out_part, repeat(seq(",", $.asm_out_part))),
+        
+        asm_in_part: ($) => seq("[", $.identifier, "]", $.string_literal, "(", $._expr, ")"),
+        asm_in: ($) => seq(":", $.asm_in_part, repeat(seq(",", $.asm_in_part))),
+      
+        asm_clobbers: ($) => seq(":", repeat(seq($.string_literal, ",")), $.string_literal, optional(",")),
+
+        asm: ($) => seq("asm", optional("volatile"), "(", field("source", $._expr), optional(seq(
+            $.asm_out,
+            optional(","),
+            optional(seq(
+                $.asm_in,
+                optional(","),
+                optional(seq($.asm_clobbers, optional(","))),
+            ))),
+        ), ")"),
 
         noalias: ($) => "noalias",
         anytype: ($) => "anytype",
@@ -234,6 +252,7 @@ module.exports = grammar({
             $.string_literal,
             $.multi_string_literal,
             $.enum_literal,
+            $.asm,
 
             $.struct,
             $.enum,
