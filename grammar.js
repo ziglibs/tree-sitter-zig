@@ -94,7 +94,8 @@ module.exports = grammar({
     externals: (_) => [],
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
-    conflicts: ($) => [[$.container_field_list]],
+    // TODO: Investigate these - can we fix them?
+    conflicts: ($) => [[$.container_field_list], [$.block_expr]],
 
     rules: {
         root: ($) => seq(optional($.container_doc_comment), _container_members($)),
@@ -107,7 +108,6 @@ module.exports = grammar({
 
         // Simple terms
         identifier: ($) => choice(/[A-Za-z_][A-Za-z0-9_]*/, seq("@", $.string_literal)),
-        // TODO: Escapes
         string_escape: ($) => choice(
             "\\n",
             "\\r",
@@ -118,7 +118,11 @@ module.exports = grammar({
             /\\x[0-9a-fA-F]{2}/,
             /\\u\{[0-9a-fA-F]{1,6}\}/
         ),
+
+        char_fragment: ($) => token.immediate(prec(1, /[^'\\]/)),
         string_fragment: ($) => token.immediate(prec(1, /[^"\\]+/)),
+
+        char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
 
         noalias: ($) => "noalias",
@@ -213,6 +217,7 @@ module.exports = grammar({
 
             $.float,
             $.integer,
+            $.char_literal,
             $.string_literal,
 
             $.struct,
@@ -236,9 +241,14 @@ module.exports = grammar({
             $.prefix_op,
             $.suffix_op,
             $.binary_op,
+            
+            $.array_access_op,
+            $.slice_op,
 
             $.array_init,
             $.aggregate_init,
+
+            $.unreachable,
         )),
 
         group: $ => seq("(", $._expr, ")"),
@@ -339,6 +349,9 @@ module.exports = grammar({
             field("right", $._expr),
         )),
 
+        array_access_op: $ => seq(field("operand", $._expr), "[", field("element", $._expr), "]"),
+        slice_op: $ => seq(field("operand", $._expr), "[", field("start", $._expr), "..", optional(field("end", $._expr)), optional(seq(":", field("sentinel", $._expr))), "]"),
+
         // TODO: Make this configurable (if/else can only have max one capture, switch max 2, etc.)
 
         capture_pointer_of: _ => "*",
@@ -428,9 +441,8 @@ module.exports = grammar({
                         $.break_stmt,
                         $.assign_stmt,
                         $.return_stmt,
-                        $.call,
-                        $.builtin_call,
-                        $.field_access,
+                        // TODO: Invalidate if (...){} by cherrypicking valid expressions
+                        $._expr,
                     ),
                     ";"
                 ),
@@ -507,6 +519,7 @@ module.exports = grammar({
         var: (_) => "var",
         constant: (_) => "const",
         volatile: (_) => "volatile",
+        unreachable: (_) => "unreachable",
 
         _pointer_modifier: ($) => choice($.allowzero, $.alignment, $.constant, $.volatile),
 
@@ -529,7 +542,7 @@ module.exports = grammar({
             optional(field("default", seq("=", $._expr)))
         )),
         
-        fn_param: ($) => seq(optional(choice(field("noalias", $.noalias), field("comptime", $.comptime))), field("name", $.identifier), ":", field("type", choice($._expr, $.noalias))),
+        fn_param: ($) => seq(optional(choice(field("noalias", $.noalias), field("comptime", $.comptime))), optional(seq(field("name", $.identifier), ":")), field("type", choice($._expr, $.noalias))),
         fn_param_list: ($) => seq("(", optional(seq(repeat(seq($.fn_param, ",")), $.fn_param, optional(","))), ")"),
 
         fn_proto: ($) => seq(
@@ -546,10 +559,12 @@ module.exports = grammar({
         packed: (_) => "packed",
         export: (_) => "export",
 
+        extern_specifier: ($) => seq($.extern, optional($.string_literal)),
+
         container_function: ($) => seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("pub", $.pub)),
-            optional(field("extern", $.extern)),
+            optional(field("extern", $.extern_specifier)),
             optional(field("export", $.export)),
             $.fn_proto,
             choice(field("body", $.block), ";")
@@ -558,7 +573,7 @@ module.exports = grammar({
         container_var_decl: ($) => seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("pub", $.pub)),
-            optional(field("extern", $.extern)),
+            optional(field("extern", $.extern_specifier)),
             optional(field("export", $.export)),
             $.var_decl,
         ),

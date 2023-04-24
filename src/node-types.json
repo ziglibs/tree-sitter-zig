@@ -45,15 +45,19 @@
     }
   },
   {
-    "type": "array_init",
+    "type": "array_access_op",
     "named": true,
     "fields": {
-      "length": {
+      "element": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
             "named": true
           },
           {
@@ -74,6 +78,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -125,6 +133,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -138,6 +150,244 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "array_init",
+    "named": true,
+    "fields": {
+      "length": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -155,6 +405,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -172,6 +426,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -223,6 +481,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -236,6 +498,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -269,6 +535,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -286,6 +556,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -337,6 +611,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -350,6 +628,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -377,6 +659,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -394,6 +680,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -445,6 +735,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -458,6 +752,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -486,6 +784,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -503,6 +805,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -554,6 +860,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -567,6 +877,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -594,6 +908,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -611,6 +929,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -662,6 +984,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -675,6 +1001,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -699,7 +1029,27 @@
       "required": false,
       "types": [
         {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
           "type": "assign_stmt",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
           "named": true
         },
         {
@@ -715,7 +1065,23 @@
           "named": true
         },
         {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
           "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
@@ -723,11 +1089,59 @@
           "named": true
         },
         {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "if_expr",
           "named": true
         },
         {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
           "type": "return_stmt",
+          "named": true
+        },
+        {
+          "type": "slice_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
           "named": true
         },
         {
@@ -790,6 +1204,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -807,6 +1225,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -858,6 +1280,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -871,6 +1297,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -962,6 +1392,25 @@
     "fields": {}
   },
   {
+    "type": "char_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_fragment",
+          "named": true
+        },
+        {
+          "type": "string_escape",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "container_body",
     "named": true,
     "fields": {},
@@ -1025,6 +1474,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -1042,6 +1495,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -1093,6 +1550,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1106,6 +1567,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -1143,6 +1608,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -1160,6 +1629,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -1211,6 +1684,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1224,6 +1701,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -1288,7 +1769,7 @@
         "required": false,
         "types": [
           {
-            "type": "extern",
+            "type": "extern_specifier",
             "named": true
           }
         ]
@@ -1344,7 +1825,7 @@
         "required": false,
         "types": [
           {
-            "type": "extern",
+            "type": "extern_specifier",
             "named": true
           }
         ]
@@ -1384,6 +1865,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -1401,6 +1886,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -1452,6 +1941,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1465,6 +1958,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -1513,6 +2010,10 @@
           "named": true
         },
         {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
           "type": "array_init",
           "named": true
         },
@@ -1530,6 +2031,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
           "named": true
         },
         {
@@ -1581,6 +2086,10 @@
           "named": true
         },
         {
+          "type": "slice_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1597,7 +2106,30 @@
           "named": true
         },
         {
+          "type": "unreachable",
+          "named": true
+        },
+        {
           "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "extern_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "extern",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -1616,6 +2148,10 @@
           "named": true
         },
         {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
           "type": "array_init",
           "named": true
         },
@@ -1633,6 +2169,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
           "named": true
         },
         {
@@ -1684,6 +2224,10 @@
           "named": true
         },
         {
+          "type": "slice_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1697,6 +2241,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
           "named": true
         },
         {
@@ -1719,6 +2267,10 @@
           "named": true
         },
         {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
           "type": "array_init",
           "named": true
         },
@@ -1736,6 +2288,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
           "named": true
         },
         {
@@ -1787,6 +2343,10 @@
           "named": true
         },
         {
+          "type": "slice_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1800,6 +2360,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
           "named": true
         },
         {
@@ -1840,7 +2404,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -1867,6 +2431,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -1884,6 +2452,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -1939,6 +2511,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1952,6 +2528,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2010,6 +2590,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2027,6 +2611,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2078,6 +2666,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2091,6 +2683,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2124,6 +2720,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2141,6 +2741,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2192,6 +2796,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2205,6 +2813,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2232,6 +2844,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2249,6 +2865,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2300,6 +2920,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2316,6 +2940,10 @@
             "named": true
           },
           {
+            "type": "unreachable",
+            "named": true
+          },
+          {
             "type": "while_expr",
             "named": true
           }
@@ -2327,6 +2955,10 @@
         "types": [
           {
             "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
             "named": true
           },
           {
@@ -2347,6 +2979,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2402,6 +3038,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2415,6 +3055,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2438,6 +3082,10 @@
           "named": true
         },
         {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
           "type": "array_init",
           "named": true
         },
@@ -2455,6 +3103,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
           "named": true
         },
         {
@@ -2506,6 +3158,10 @@
           "named": true
         },
         {
+          "type": "slice_op",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -2519,6 +3175,10 @@
         },
         {
           "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
           "named": true
         },
         {
@@ -2556,6 +3216,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2573,6 +3237,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2624,6 +3292,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2637,6 +3309,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2654,6 +3330,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2671,6 +3351,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2722,6 +3406,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2735,6 +3423,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2762,6 +3454,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2779,6 +3475,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2830,6 +3530,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2843,6 +3547,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -2886,6 +3594,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -2903,6 +3615,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -2954,6 +3670,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2967,6 +3687,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3018,6 +3742,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3035,6 +3763,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3086,6 +3818,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3099,6 +3835,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3166,6 +3906,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3183,6 +3927,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3234,6 +3982,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3247,6 +3999,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3311,6 +4067,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3328,6 +4088,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3379,6 +4143,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3392,6 +4160,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3430,15 +4202,19 @@
     }
   },
   {
-    "type": "slice_pointer",
+    "type": "slice_op",
     "named": true,
     "fields": {
-      "sentinel": {
+      "end": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
             "named": true
           },
           {
@@ -3459,6 +4235,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3510,6 +4290,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3523,6 +4307,472 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "sentinel": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "slice_pointer",
+    "named": true,
+    "fields": {
+      "sentinel": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3570,6 +4820,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3587,6 +4841,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3638,6 +4896,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3651,6 +4913,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3692,6 +4958,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3709,6 +4979,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3760,6 +5034,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3773,6 +5051,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3811,6 +5093,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3828,6 +5114,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -3883,6 +5173,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3896,6 +5190,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -3971,6 +5269,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -3988,6 +5290,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4039,6 +5345,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4052,6 +5362,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4073,6 +5387,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -4090,6 +5408,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4141,6 +5463,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4154,6 +5480,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4177,6 +5507,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -4194,6 +5528,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4245,6 +5583,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4258,6 +5600,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4285,6 +5631,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -4302,6 +5652,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4353,6 +5707,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4366,6 +5724,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4383,6 +5745,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -4400,6 +5766,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4451,6 +5821,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4464,6 +5838,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4503,6 +5881,10 @@
             "named": true
           },
           {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
             "type": "array_init",
             "named": true
           },
@@ -4524,6 +5906,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
             "named": true
           },
           {
@@ -4575,6 +5961,10 @@
             "named": true
           },
           {
+            "type": "slice_op",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4588,6 +5978,10 @@
           },
           {
             "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
             "named": true
           },
           {
@@ -4624,6 +6018,10 @@
   },
   {
     "type": "&=",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -4863,6 +6261,10 @@
     "named": true
   },
   {
+    "type": "char_fragment",
+    "named": true
+  },
+  {
     "type": "comptime",
     "named": true
   },
@@ -4949,6 +6351,10 @@
   {
     "type": "union",
     "named": false
+  },
+  {
+    "type": "unreachable",
+    "named": true
   },
   {
     "type": "var",

@@ -1,5 +1,4 @@
-const std = @import("std");
+// extern "c" fn write(usize, usize, usize) usize;
 
-pub fn main() void {
-    std.debug.print("hi");
-}
+// run
+//
