@@ -94,6 +94,7 @@ module.exports = grammar({
             $.container_function,
             seq($.container_var_decl, ";"),
             $.test,
+            $.container_comptime_block,
         ),
 
         test: $ => seq("test", field("name", choice($.identifier, $.string_literal)), $.block),
@@ -270,6 +271,10 @@ module.exports = grammar({
             $.call,
             $.builtin_call,
 
+            $.return_expr,
+            $.try_expr,
+            $.catch_expr,
+            $.orelse_expr,
             $.if_expr,
             $.while_expr,
             $.for_expr,
@@ -409,6 +414,23 @@ module.exports = grammar({
         ),
 
         // Branching expressions
+        try_expr: $ => prec.left(seq(
+            "try",
+            $._expr,
+        )),
+
+        catch_expr: $ => prec.left(seq(
+            field("source", $._expr),
+            "catch",
+            field("handler", $._expr),
+        )),
+
+        orelse_expr: $ => prec.left(seq(
+            field("maybe", $._expr),
+            "orelse",
+            field("else", $._expr),
+        )),
+
         if_expr: $ => prec.left(seq(
             "if",
             "(",
@@ -494,7 +516,6 @@ module.exports = grammar({
                         $.break_stmt,
                         $.continue_stmt,
                         $.assign_stmt,
-                        $.return_stmt,
                         // TODO: Invalidate if (...){} by cherrypicking valid expressions
                         $._expr,
                     ),
@@ -528,10 +549,10 @@ module.exports = grammar({
             optional(seq(":", field("label", $.identifier))),
         ),
 
-        return_stmt: $ => seq(
+        return_expr: $ => prec.left(seq(
             "return",
             optional(field("value", $._expr)),
-        ),
+        )),
 
         assignment_operator: $ => choice(
             "=",
@@ -560,12 +581,16 @@ module.exports = grammar({
             field("src", $._expr)
         ),
 
+        container_comptime_block: $ => seq(
+            "comptime",
+            seq($.block),
+        ),
+
         comptime_stmt: $ => seq(
             "comptime",
             choice(
                 seq($.var_decl, ";"),
                 seq($.assign_stmt, ";"),
-                seq($.return_stmt, ";"),
                 seq($.block_expr),
                 seq($._expr, ";"),
             ),
@@ -632,6 +657,7 @@ module.exports = grammar({
         extern: (_) => "extern",
         packed: (_) => "packed",
         export: (_) => "export",
+        threadlocal: (_) => "threadlocal",
 
         extern_specifier: ($) => seq($.extern, optional($.string_literal)),
 
@@ -647,6 +673,7 @@ module.exports = grammar({
         container_var_decl: ($) => seq(
             optional(field("documentation", $.doc_comment)),
             optional(field("pub", $.pub)),
+            optional(field("threadlocal", $.threadlocal)),
             optional(field("extern", $.extern_specifier)),
             optional(field("export", $.export)),
             $.var_decl,

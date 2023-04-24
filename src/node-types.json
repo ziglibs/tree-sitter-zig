@@ -89,6 +89,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -153,11 +157,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -174,6 +186,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -231,6 +247,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -295,11 +315,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -316,6 +344,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -379,6 +411,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -443,11 +479,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -464,6 +508,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -521,6 +569,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -585,11 +637,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -606,6 +666,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -679,6 +743,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -743,11 +811,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -764,6 +840,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -821,6 +901,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -885,11 +969,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -906,6 +998,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -969,6 +1065,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -1033,11 +1133,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -1054,6 +1162,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -1165,6 +1277,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -1229,11 +1345,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -1250,6 +1374,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -1346,6 +1474,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -1410,11 +1542,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -1431,6 +1571,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -1498,6 +1642,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -1562,11 +1710,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -1583,6 +1739,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -1651,6 +1811,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -1715,11 +1879,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -1736,6 +1908,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -1803,6 +1979,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -1867,11 +2047,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -1888,6 +2076,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -1964,6 +2156,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -2036,6 +2232,10 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
@@ -2044,7 +2244,7 @@
           "named": true
         },
         {
-          "type": "return_stmt",
+          "type": "return_expr",
           "named": true
         },
         {
@@ -2061,6 +2261,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -2163,6 +2367,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -2227,11 +2435,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -2248,6 +2464,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -2352,6 +2572,328 @@
     "fields": {}
   },
   {
+    "type": "catch_expr",
+    "named": true,
+    "fields": {
+      "handler": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "char_literal",
     "named": true,
     "fields": {},
@@ -2424,6 +2966,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -2488,6 +3034,10 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
@@ -2496,7 +3046,7 @@
           "named": true
         },
         {
-          "type": "return_stmt",
+          "type": "return_expr",
           "named": true
         },
         {
@@ -2513,6 +3063,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -2543,6 +3097,10 @@
       "required": false,
       "types": [
         {
+          "type": "container_comptime_block",
+          "named": true
+        },
+        {
           "type": "container_doc_comment",
           "named": true
         },
@@ -2560,6 +3118,21 @@
         },
         {
           "type": "test",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "container_comptime_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
           "named": true
         }
       ]
@@ -2634,6 +3207,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -2698,11 +3275,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -2719,6 +3304,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -2796,6 +3385,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -2860,11 +3453,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -2881,6 +3482,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -3023,6 +3628,16 @@
             "named": true
           }
         ]
+      },
+      "threadlocal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "threadlocal",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -3097,6 +3712,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -3161,11 +3780,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -3182,6 +3809,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -3285,6 +3916,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -3349,11 +3984,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -3370,6 +4013,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -3427,6 +4074,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -3491,11 +4142,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -3512,6 +4171,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -3572,6 +4235,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "catch_expr",
           "named": true
         },
         {
@@ -3639,11 +4306,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -3660,6 +4335,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -3741,6 +4420,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -3805,11 +4488,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -3826,6 +4517,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -3888,6 +4583,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -3952,11 +4651,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -3973,6 +4680,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -4080,6 +4791,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -4148,11 +4863,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -4169,6 +4892,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -4257,6 +4984,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -4321,11 +5052,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -4342,6 +5081,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -4409,6 +5152,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -4473,11 +5220,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -4494,6 +5249,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -4567,6 +5326,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -4631,11 +5394,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -4652,6 +5423,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -4719,6 +5494,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -4783,11 +5562,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -4804,6 +5591,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -4887,6 +5678,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -4951,6 +5746,10 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
@@ -4960,6 +5759,10 @@
         },
         {
           "type": "range",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -4976,6 +5779,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -5038,6 +5845,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -5102,11 +5913,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -5123,6 +5942,10 @@
         },
         {
           "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
           "named": true
         },
         {
@@ -5200,6 +6023,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -5264,11 +6091,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -5285,6 +6120,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -5342,6 +6181,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -5406,11 +6249,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -5427,6 +6278,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -5494,6 +6349,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -5558,11 +6417,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -5579,6 +6446,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -5662,6 +6533,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -5726,11 +6601,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -5747,6 +6630,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -5858,6 +6745,10 @@
           "named": true
         },
         {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
           "type": "char_literal",
           "named": true
         },
@@ -5922,11 +6813,19 @@
           "named": true
         },
         {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
           "type": "pointer_type",
           "named": true
         },
         {
           "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
           "named": true
         },
         {
@@ -5946,6 +6845,10 @@
           "named": true
         },
         {
+          "type": "try_expr",
+          "named": true
+        },
+        {
           "type": "union",
           "named": true
         },
@@ -5961,10 +6864,10 @@
     }
   },
   {
-    "type": "pointer_type",
+    "type": "orelse_expr",
     "named": true,
     "fields": {
-      "child": {
+      "else": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6002,6 +6905,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
             "named": true
           },
           {
@@ -6069,11 +6976,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6090,6 +7005,332 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      },
+      "maybe": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pointer_type",
+    "named": true,
+    "fields": {
+      "child": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "error_union",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "one_error",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          },
+          {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6197,6 +7438,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -6261,11 +7506,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6282,6 +7535,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6342,7 +7599,7 @@
     }
   },
   {
-    "type": "return_stmt",
+    "type": "return_expr",
     "named": true,
     "fields": {
       "value": {
@@ -6383,6 +7640,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
             "named": true
           },
           {
@@ -6450,11 +7711,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6471,6 +7740,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6497,6 +7770,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "container_comptime_block",
+          "named": true
+        },
         {
           "type": "container_doc_comment",
           "named": true
@@ -6565,6 +7842,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -6629,11 +7910,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6650,6 +7939,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6707,6 +8000,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -6771,11 +8068,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6792,6 +8097,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6849,6 +8158,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -6913,11 +8226,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -6934,6 +8255,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -6991,6 +8316,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -7055,11 +8384,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7076,6 +8413,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -7139,6 +8480,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -7203,11 +8548,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7224,6 +8577,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -7311,6 +8668,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -7375,11 +8736,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7396,6 +8765,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -7477,6 +8850,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -7541,11 +8918,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7562,6 +8947,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -7626,6 +9015,169 @@
     }
   },
   {
+    "type": "try_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "array_type",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "catch_expr",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "error_union",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "multi_string_literal",
+          "named": true
+        },
+        {
+          "type": "one_error",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "optional_type",
+          "named": true
+        },
+        {
+          "type": "orelse_expr",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "slice_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "try_expr",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "union",
     "named": true,
     "fields": {
@@ -7667,6 +9219,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "catch_expr",
             "named": true
           },
           {
@@ -7738,11 +9294,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7759,6 +9323,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -7874,6 +9442,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -7938,11 +9510,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -7959,6 +9539,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -8020,6 +9604,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -8084,11 +9672,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -8105,6 +9701,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -8173,6 +9773,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -8237,11 +9841,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -8258,6 +9870,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -8325,6 +9941,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -8389,11 +10009,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -8410,6 +10038,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -8467,6 +10099,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -8531,11 +10167,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -8552,6 +10196,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -8645,6 +10293,10 @@
             "named": true
           },
           {
+            "type": "catch_expr",
+            "named": true
+          },
+          {
             "type": "char_literal",
             "named": true
           },
@@ -8709,11 +10361,19 @@
             "named": true
           },
           {
+            "type": "orelse_expr",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
           {
             "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "return_expr",
             "named": true
           },
           {
@@ -8730,6 +10390,10 @@
           },
           {
             "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "try_expr",
             "named": true
           },
           {
@@ -9029,6 +10693,10 @@
     "named": false
   },
   {
+    "type": "catch",
+    "named": false
+  },
+  {
     "type": "char_fragment",
     "named": true
   },
@@ -9101,6 +10769,10 @@
     "named": false
   },
   {
+    "type": "orelse",
+    "named": false
+  },
+  {
     "type": "packed",
     "named": true
   },
@@ -9122,6 +10794,14 @@
   },
   {
     "type": "test",
+    "named": false
+  },
+  {
+    "type": "threadlocal",
+    "named": true
+  },
+  {
+    "type": "try",
     "named": false
   },
   {
