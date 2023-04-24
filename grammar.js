@@ -122,7 +122,7 @@ module.exports = grammar({
 
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
-        multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/), "\n")),
+        multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
         // TODO(sno2): why is just `.` allowed?
         enum_literal: ($) => seq(".", $.identifier),
 
@@ -542,9 +542,9 @@ module.exports = grammar({
         // Types
         // Pointer
         one_pointer: (_) => "*",
-        many_pointer: ($) => seq("[*", optional(seq(":", field("sentinel", $._expr))), "]"),
+        many_pointer: ($) => seq("[", "*", optional(seq(":", field("sentinel", $._expr))), "]"),
         slice_pointer: ($) => seq("[", optional(seq(":", field("sentinel", $._expr))), "]"),
-        c_pointer: (_) => "[*c]",
+        c_pointer: (_) => seq("[", "*", "c", "]"),
 
         _pointer_size: ($) => choice(
             $.one_pointer,
@@ -553,7 +553,7 @@ module.exports = grammar({
             $.c_pointer,
         ),
 
-        alignment: ($) => seq("align(", $.integer, ")"),
+        alignment: ($) => seq("align", "(", $.integer, ")"),
         allowzero: (_) => "allowzero",
         var: (_) => "var",
         constant: (_) => "const",
