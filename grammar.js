@@ -122,6 +122,7 @@ module.exports = grammar({
 
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
+        multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*\n/))),
         // TODO(sno2): why is just `.` allowed?
         enum_literal: ($) => seq(".", $.identifier),
 
@@ -231,6 +232,7 @@ module.exports = grammar({
             $.integer,
             $.char_literal,
             $.string_literal,
+            $.multi_string_literal,
             $.enum_literal,
 
             $.struct,
