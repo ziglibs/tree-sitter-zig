@@ -262,6 +262,7 @@ module.exports = grammar({
             $.one_error,
             $.error_union,
 
+            $.array_type,
             $.optional_type,
             $.pointer_type,
             $.identifier,
@@ -602,6 +603,7 @@ module.exports = grammar({
             field("child", $._expr),
         )),
 
+        array_type: ($) => prec.left(seq("[", field("length", $._expr), "]", field("child", $._expr))),
         optional_type: ($) => prec.left(seq("?", $._expr)),
 
         // Should comptime fields be handled like this?
