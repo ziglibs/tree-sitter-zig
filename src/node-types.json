@@ -65,6 +65,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -188,6 +192,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -323,6 +331,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -449,6 +461,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -571,6 +587,351 @@
     }
   },
   {
+    "type": "asm",
+    "named": true,
+    "fields": {
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggregate_init",
+            "named": true
+          },
+          {
+            "type": "array_access_op",
+            "named": true
+          },
+          {
+            "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
+            "named": true
+          },
+          {
+            "type": "binary_op",
+            "named": true
+          },
+          {
+            "type": "block_expr",
+            "named": true
+          },
+          {
+            "type": "builtin_call",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "enum_literal",
+            "named": true
+          },
+          {
+            "type": "error_set",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for_expr",
+            "named": true
+          },
+          {
+            "type": "group",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
+            "named": true
+          },
+          {
+            "type": "opaque",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "prefix_op",
+            "named": true
+          },
+          {
+            "type": "slice_op",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
+            "type": "suffix_op",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          },
+          {
+            "type": "unreachable",
+            "named": true
+          },
+          {
+            "type": "while_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "asm_clobbers",
+          "named": true
+        },
+        {
+          "type": "asm_in",
+          "named": true
+        },
+        {
+          "type": "asm_out",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asm_clobbers",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asm_in",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "asm_in_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asm_in_part",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_init",
+          "named": true
+        },
+        {
+          "type": "array_access_op",
+          "named": true
+        },
+        {
+          "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "asm",
+          "named": true
+        },
+        {
+          "type": "binary_op",
+          "named": true
+        },
+        {
+          "type": "block_expr",
+          "named": true
+        },
+        {
+          "type": "builtin_call",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
+          "type": "error_set",
+          "named": true
+        },
+        {
+          "type": "field_access",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for_expr",
+          "named": true
+        },
+        {
+          "type": "group",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "multi_string_literal",
+          "named": true
+        },
+        {
+          "type": "opaque",
+          "named": true
+        },
+        {
+          "type": "pointer_type",
+          "named": true
+        },
+        {
+          "type": "prefix_op",
+          "named": true
+        },
+        {
+          "type": "slice_op",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "suffix_op",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        },
+        {
+          "type": "unreachable",
+          "named": true
+        },
+        {
+          "type": "while_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asm_out",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "asm_out_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asm_out_part",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_stmt",
     "named": true,
     "fields": {
@@ -588,6 +949,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -724,6 +1089,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -864,6 +1233,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -997,6 +1370,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -1134,6 +1511,10 @@
         },
         {
           "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "asm",
           "named": true
         },
         {
@@ -1324,6 +1705,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1449,6 +1834,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "c_pointer",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "call",
@@ -1610,6 +2000,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -1753,6 +2147,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -2041,6 +2439,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2213,6 +2615,10 @@
           "named": true
         },
         {
+          "type": "asm",
+          "named": true
+        },
+        {
           "type": "binary_op",
           "named": true
         },
@@ -2363,6 +2769,10 @@
           "named": true
         },
         {
+          "type": "asm",
+          "named": true
+        },
+        {
           "type": "binary_op",
           "named": true
         },
@@ -2491,6 +2901,10 @@
         },
         {
           "type": "array_init",
+          "named": true
+        },
+        {
+          "type": "asm",
           "named": true
         },
         {
@@ -2670,6 +3084,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2727,6 +3145,10 @@
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
             "named": true
           },
           {
@@ -2831,6 +3253,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -2888,6 +3314,10 @@
           },
           {
             "type": "integer",
+            "named": true
+          },
+          {
+            "type": "multi_string_literal",
             "named": true
           },
           {
@@ -2956,6 +3386,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -3101,6 +3535,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -3234,6 +3672,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -3520,6 +3962,10 @@
           "named": true
         },
         {
+          "type": "asm",
+          "named": true
+        },
+        {
           "type": "binary_op",
           "named": true
         },
@@ -3666,6 +4112,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -3789,6 +4239,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -3925,6 +4379,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -4077,6 +4535,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -4382,6 +4844,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -4558,6 +5024,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -4731,6 +5201,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -4894,6 +5368,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -5017,6 +5495,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -5146,6 +5628,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -5269,6 +5755,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -5401,6 +5891,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -5560,6 +6054,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -5707,6 +6205,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -5884,6 +6386,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -6075,6 +6581,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -6205,6 +6715,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -6317,6 +6831,11 @@
     }
   },
   {
+    "type": "volatile",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "while_expr",
     "named": true,
     "fields": {
@@ -6334,6 +6853,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -6473,6 +6996,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "binary_op",
             "named": true
           },
@@ -6596,6 +7123,10 @@
           },
           {
             "type": "array_init",
+            "named": true
+          },
+          {
+            "type": "asm",
             "named": true
           },
           {
@@ -6757,6 +7288,10 @@
             "named": true
           },
           {
+            "type": "asm",
+            "named": true
+          },
+          {
             "type": "assign_stmt",
             "named": true
           },
@@ -6871,6 +7406,10 @@
         ]
       }
     }
+  },
+  {
+    "type": "\n",
+    "named": false
   },
   {
     "type": "!",
@@ -7089,10 +7628,6 @@
     "named": false
   },
   {
-    "type": "[*",
-    "named": false
-  },
-  {
     "type": "\\\"",
     "named": false
   },
@@ -7129,7 +7664,7 @@
     "named": false
   },
   {
-    "type": "align(",
+    "type": "align",
     "named": false
   },
   {
@@ -7137,12 +7672,16 @@
     "named": true
   },
   {
+    "type": "asm",
+    "named": false
+  },
+  {
     "type": "break",
     "named": false
   },
   {
-    "type": "c_pointer",
-    "named": true
+    "type": "c",
+    "named": false
   },
   {
     "type": "callconv",
@@ -7258,7 +7797,7 @@
   },
   {
     "type": "volatile",
-    "named": true
+    "named": false
   },
   {
     "type": "while",
