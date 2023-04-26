@@ -50,8 +50,22 @@ module.exports = grammar({
         fn_proto: $ => seq("fn", optional($.identifier), "(", $.param_decl_list, ")", optional($.byte_align), optional($.addr_space), optional($.link_section), optional($.call_conv), optional("!"), $.type_expr),
         var_decl: $ => seq(choice("const", "var"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional($.addr_space), optional($.link_section), optional(seq("=", $.expr)), ";"),
         container_field: $ => choice(
-            seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(":", $.type_expr), optional(byte_align), optional(seq("=", $.expr))),
-            seq(optional($.doc_comment), optional("comptime"), optional($.identifier, ":"), $.type_expr, optional(byte_align), optional(seq("=", $.expr))),
-        )
+            seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(":", $.type_expr), optional($.byte_align), optional(seq("=", $.expr))),
+            seq(optional($.doc_comment), optional("comptime"), optional($.identifier, ":"), $.type_expr, optional($.byte_align), optional(seq("=", $.expr))),
+        ),
+
+        // *** Block Level ***
+        statement: $ => choice(
+            seq(optional("comptime"), $.var_decl),
+            seq("comptime", $.block_expr_statement),
+            seq("nosuspend", $.block_expr_statement),
+            seq("suspend", $.block_expr_statement),
+            seq("defer", $.block_expr_statement),
+            seq("errdefer", optional($.payload), $.block_expr_statement),
+            seq($.if_statement),
+            seq($.labeled_statement),
+            seq($.switch_expr),
+            seq($.assign_expr, ";"),
+        ),
     }
 });
