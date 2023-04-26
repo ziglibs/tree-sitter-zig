@@ -393,41 +393,43 @@ module.exports = grammar({
 
         fn_call_arguments: $ => seq("(", $.expr_list, ")"),
 
-        // # Ptr specific
-        // SliceTypeStart <- LBRACKET (COLON Expr)? RBRACKET
+        // Ptr specific
+        slice_type_start: $ => seq("[", optional(seq(":", expr)), "]"),
 
-        // PtrTypeStart
-        //     <- ASTERISK
-        //     / ASTERISK2
-        //     / LBRACKET ASTERISK (LETTERC / COLON Expr)? RBRACKET
+        ptr_type_start: $ => seq(
+            "*",
+            "**",
+            seq("[", "*", optional(choice("c", seq(":", $.expr))), "]"),
+        ),
 
-        // ArrayTypeStart <- LBRACKET Expr (COLON Expr)? RBRACKET
+        array_type_start: $ => seq("[", $.expr, optional(seq(":", $.expr)), "]"),
 
-        // # ContainerDecl specific
-        // ContainerDeclAuto <- ContainerDeclType LBRACE container_doc_comment? ContainerMembers RBRACE
+        // ContainerDecl specific
+        container_decl_auto: $ => seq($.container_decl_type, "[", optional($.container_doc_comment), $.container_members, "]"),
 
-        // ContainerDeclType
-        //     <- KEYWORD_struct (LPAREN Expr RPAREN)?
-        //     / KEYWORD_opaque
-        //     / KEYWORD_enum (LPAREN Expr RPAREN)?
-        //     / KEYWORD_union (LPAREN (KEYWORD_enum (LPAREN Expr RPAREN)? / Expr) RPAREN)?
+        container_decl_type: $ => choice(
+            seq("struct", optional(seq("(", $.expr, ")"))),
+            "opaque",
+            seq("enum", optional(seq("(", $.expr, ")"))),
+            seq("union", optional(seq("(", choice(seq("enum", optional(seq("(", $.expr, ")"))), expr), ")"))),
+        ),
 
-        // # Alignment
-        // ByteAlign <- KEYWORD_align LPAREN Expr RPAREN
+        // Alignment
+        byte_align: $ => seq("align", "(", $.expr, ")"),
 
-        // # Lists
-        // IdentifierList <- (doc_comment? IDENTIFIER COMMA)* (doc_comment? IDENTIFIER)?
+        // Lists
+        // identifier_list <- (doc_comment? identifier comma)* (doc_comment? identifier)?
 
-        // SwitchProngList <- (SwitchProng COMMA)* SwitchProng?
+        // switch_prong_list <- (switch_prong comma)* switch_prong?
 
-        // AsmOutputList <- (AsmOutputItem COMMA)* AsmOutputItem?
+        // asm_output_list <- (asm_output_item comma)* asm_output_item?
 
-        // AsmInputList <- (AsmInputItem COMMA)* AsmInputItem?
+        // asm_input_list <- (asm_input_item comma)* asm_input_item?
 
-        // StringList <- (STRINGLITERAL COMMA)* STRINGLITERAL?
+        // string_list <- (stringliteral comma)* stringliteral?
 
-        // ParamDeclList <- (ParamDecl COMMA)* ParamDecl?
+        // param_decl_list <- (param_decl comma)* param_decl?
 
-        // ExprList <- (Expr COMMA)* Expr?
+        // expr_list <- (expr comma)* expr?
     }
 });
