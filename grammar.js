@@ -418,18 +418,18 @@ module.exports = grammar({
         byte_align: $ => seq("align", "(", $.expr, ")"),
 
         // Lists
-        // identifier_list <- (doc_comment? identifier comma)* (doc_comment? identifier)?
+        identifier_list: $ => seq(repeat(seq(optional($.doc_comment), $.identifier, ",")), optional(seq(optional(doc_comment), $.identifier))),
 
-        // switch_prong_list <- (switch_prong comma)* switch_prong?
+        switch_prong_list: $ => seq(repeat(seq($.switch_prong, ",")), optional($.switch_prong)),
 
-        // asm_output_list <- (asm_output_item comma)* asm_output_item?
+        asm_output_list: $ => seq(repeat(seq($.asm_output_item, ",")), optional($.asm_output_item)),
 
-        // asm_input_list <- (asm_input_item comma)* asm_input_item?
+        asm_input_list: $ => seq(repeat(seq($.asm_input_item, ",")), optional($.asm_input_item)),
 
-        // string_list <- (stringliteral comma)* stringliteral?
+        string_list: $ => seq(repeat(seq($.stringliteral, ",")), optional($.stringliteral)),
 
-        // param_decl_list <- (param_decl comma)* param_decl?
+        param_decl_list: $ => seq(repeat(seq($.param_decl, ",")), optional($.param_decl)),
 
-        // expr_list <- (expr comma)* expr?
+        expr_list: $ => seq(repeat(seq($.expr, $.comma)), optional($.expr)),
     }
 });
