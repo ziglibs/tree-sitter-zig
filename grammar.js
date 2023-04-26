@@ -16,6 +16,30 @@ function numericWithSeparator(regex) {
     return seq(regex, repeat(seq(optional("_"), regex)));
 }
 
+const container_declarations = $ => repeat(choice(
+    seq($.test_decl),
+    seq($.comptime_decl),
+    seq(optional($.doc_comment), optional("pub"), $.decl)
+));
+
+const container_members = $ => seq(container_declarations($), repeat(seq($.container_field, ",")), choice($.container_field, container_declarations($)));
+
+// Lists
+
+const identifier_list = $ => seq(repeat(seq(optional($.doc_comment), $.identifier, ",")), optional(seq(optional($.doc_comment), $.identifier)));
+
+const switch_prong_list = $ => seq(repeat(seq($.switch_prong, ",")), optional($.switch_prong));
+
+const asm_output_list = $ => seq(repeat(seq($.asm_output_item, ",")), optional($.asm_output_item));
+
+const asm_input_list = $ => seq(repeat(seq($.asm_input_item, ",")), optional($.asm_input_item));
+
+const string_list = $ => seq(repeat(seq($.string_literal, ",")), optional($.string_literal));
+
+const param_decl_list = $ => seq(repeat(seq($.param_decl, ",")), optional($.param_decl));
+
+const expr_list = $ => seq(repeat(seq($.expr, ",")), optional($.expr));
+
 module.exports = grammar({
     name: "zig",
 
@@ -23,19 +47,12 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [],
+    conflicts: ($) => [[$.root], [$.container_decl_auto], [$.switch_case]],
 
     rules: {
-        root: $ => seq(optional($.container_doc_comment), $.container_members),
+        root: $ => seq(optional($.container_doc_comment), container_members($)),
         
         // *** Top level ***
-        container_members: $ => seq($.container_declarations, repeat(seq($.container_field, ",")), choice($.container_field, $.container_declarations)),
-        container_declarations: $ => repeat(choice(
-            seq($.test_decl),
-            seq($.comptime_decl),
-            seq(optional($.doc_comment), optional("pub"), $.decl)
-        )),
-
         test_decl: $ => seq("test", optional(field("name", choice($.string_literal_single, $.identifier))), $.block),
 
         comptime_decl: $ => seq("comptime", $.block),
@@ -46,12 +63,12 @@ module.exports = grammar({
             seq("usingnamespace", $.expr, ";")
         ),
 
-        fn_proto: $ => seq("fn", optional($.identifier), "(", $.param_decl_list, ")", optional($.byte_align), optional($.addr_space), optional($.link_section), optional($.call_conv), optional("!"), $.type_expr),
+        fn_proto: $ => seq("fn", optional($.identifier), "(", param_decl_list($), ")", optional($.byte_align), optional($.addr_space), optional($.link_section), optional($.call_conv), optional("!"), $.type_expr),
         var_decl: $ => seq(choice("const", "var"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional($.addr_space), optional($.link_section), optional(seq("=", $.expr)), ";"),
-        container_field: $ => choice(
+        container_field: $ => prec(5, choice(
             seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional(seq("=", $.expr))),
             seq(optional($.doc_comment), optional("comptime"), optional(seq($.identifier, ":")), $.type_expr, optional($.byte_align), optional(seq("=", $.expr))),
-        ),
+        )),
 
         // *** Block Level ***
         statement: $ => choice(
@@ -72,7 +89,7 @@ module.exports = grammar({
             seq($.if_prefix, $.assign_expr, choice(";", seq("else", optional($.payload), $.statement)))
         ),
 
-        labeled_statement: $ => seq(optional($.block_label), choice($.block, $.loop_statement)),
+        labeled_statement: $ => prec(precedence.curly, seq(optional($.block_label), choice($.block, $.loop_statement))),
         loop_statement: $ => seq(optional("inline"), choice($.for_statement, $.while_statement)),
 
         for_statement: $ => choice(
@@ -90,31 +107,31 @@ module.exports = grammar({
             seq($.assign_expr, ";"),
         ),
 
-        block_expr: $ => seq(optional($.block_label), $.block),
+        block_expr: $ => prec(precedence.curly, seq(optional($.block_label), $.block)),
 
         // *** Expression Level ***
 
-        assign_expr: $ => seq($.expr, optional(seq($.assign_op, $.expr))),
+        assign_expr: $ => prec(precedence.assign, seq($.expr, optional(seq($.assign_op, $.expr)))),
 
         expr: $ => $.bool_or_expr,
 
-        bool_or_expr: $ => seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr))),
+        bool_or_expr: $ => prec.right(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
 
-        bool_and_expr: $ => seq($.compare_expr, repeat(seq("and", $.compare_expr))),
+        bool_and_expr: $ => prec.right(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
 
-        compare_expr: $ => seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr))),
+        compare_expr: $ => prec.right(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
 
-        bitwise_expr: $ => seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr))),
+        bitwise_expr: $ => prec.right(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
 
-        bit_shift_expr: $ => seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr))),
+        bit_shift_expr: $ => prec.right(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
 
-        addition_expr: $ => seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr))),
+        addition_expr: $ => prec.right(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
 
-        multiply_expr: $ => seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr))),
+        multiply_expr: $ => prec.right(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
 
-        prefix_expr: $ => seq(repeat($.prefix_op), $.primary_expr),
+        prefix_expr: $ => prec.right(precedence.prefix, seq(repeat($.prefix_op), $.primary_expr)),
 
-        primary_expr: $ => choice(
+        primary_expr: $ => prec.right(precedence.primary, choice(
             $.asm_expr,
             $.if_expr,
             seq("break", optional($.break_label), optional($.expr)),
@@ -126,19 +143,19 @@ module.exports = grammar({
             seq(optional($.block_label), $.loop_expr),
             $.block,
             $.curly_suffix_expr,
-        ),
+        )),
 
-        if_expr: $ => seq($.if_prefix, $.expr, optional(seq("else", optional($.payload), $.expr))),
+        if_expr: $ => prec.right(seq($.if_prefix, $.expr, optional(seq("else", optional($.payload), $.expr)))),
 
         block: $ => seq("{", repeat($.statement), "}"),
 
         loop_expr: $ => seq(optional("inline"), choice($.for_expr, $.while_expr)),
 
-        for_expr: $ => seq($.for_prefix, $.expr, optional(seq("else", $.expr))),
+        for_expr: $ => prec.right(seq($.for_prefix, $.expr, optional(seq("else", $.expr)))),
 
-        while_expr: $ => seq($.while_prefix, $.expr, optional(seq("else", optional($.payload), $.expr))),
+        while_expr: $ => prec.right(seq($.while_prefix, $.expr, optional(seq("else", optional($.payload), $.expr)))),
 
-        curly_suffix_expr: $ => seq($.type_expr, optional($.init_list)),
+        curly_suffix_expr: $ => prec.right(precedence.curly, seq($.type_expr, optional($.init_list))),
 
         init_list: $ => choice(
             seq("{", $.field_init, repeat(seq(",", $.field_init)), optional(","), "}"),
@@ -148,14 +165,14 @@ module.exports = grammar({
 
         type_expr: $ => seq(repeat($.prefix_type_op), $.error_union_expr),
 
-        error_union_expr: $ => seq($.suffix_expr, optional(seq("!", $.type_expr))),
+        error_union_expr: $ => prec.right(seq($.suffix_expr, optional(seq("!", $.type_expr)))),
 
-        suffix_expr: $ => choice(
+        suffix_expr: $ => prec.right(choice(
             seq("async", $.primary_type_expr, repeat($.suffix_op), $.fn_call_arguments),
             seq($.primary_type_expr, repeat(choice($.suffix_op, $.fn_call_arguments))),
-        ),
+        )),
 
-        primary_type_expr: $ => choice(
+        primary_type_expr: $ => prec(2, choice(
             seq($.builtin_identifier, $.fn_call_arguments),
             $.char_literal,
             $.container_decl,
@@ -175,15 +192,15 @@ module.exports = grammar({
             "unreachable",
             $.string_literal,
             $.switch_expr,
-        ),
+        )),
 
         container_decl: $ => seq(optional(choice("extern", "packed")), $.container_decl_auto),
 
-        error_set_decl: $ => seq("error", "{", $.identifier_list, "}"),
+        error_set_decl: $ => seq("error", "{", identifier_list($), "}"),
 
         grouped_expr: $ => seq("(", $.expr, ")"),
 
-        if_type_expr: $ => seq($.if_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr))),
+        if_type_expr: $ => prec.right(seq($.if_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr)))),
 
         labeled_type_expr: $ => choice(
             seq($.block_label, $.block),
@@ -192,29 +209,29 @@ module.exports = grammar({
 
         loop_type_expr: $ => seq(optional("inline"), choice($.for_type_expr, $.while_type_expr)),
 
-        for_type_expr: $ => seq($.for_prefix, $.type_expr, optional(seq("else", $.type_expr))),
+        for_type_expr: $ => prec.right(seq($.for_prefix, $.type_expr, optional(seq("else", $.type_expr)))),
 
-        while_type_expr: $ => seq($.while_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr))),
+        while_type_expr: $ => prec.right(seq($.while_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr)))),
 
-        switch_expr: $ => seq("switch", "(", $.expr, ")", "{", $.switch_prong_list, "}"),
+        switch_expr: $ => seq("switch", "(", $.expr, ")", "{", switch_prong_list($), "}"),
 
         // *** Assembly ***
         asm_expr: $ => seq("asm", optional("volatile"), "(", $.expr, optional($.asm_output), ")"),
 
-        asm_output: $ => seq(":", $.asm_output_list, optional($.asm_input)),
+        asm_output: $ => seq(":", asm_output_list($), optional($.asm_input)),
 
         asm_output_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", seq("->", choice($.type_expr, $.identifier)), ")"),
 
-        asm_input: $ => seq(":", $.asm_input_list, optional($.asm_clobbers)),
+        asm_input: $ => seq(":", asm_input_list($), optional($.asm_clobbers)),
 
         asm_input_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", $.expr, ")"),
 
-        asm_clobbers: $ => seq(":", $.string_list),
+        asm_clobbers: $ => seq(":", string_list($)),
 
         // *** Helper grammar ***
         break_label: $ => seq(":", $.identifier),
 
-        block_label: $ => seq($.identifier, ":"),
+        block_label: $ => prec.left(seq($.identifier, ":")),
 
         field_init: $ => seq(".", $.identifier, "=", $.expr),
 
@@ -391,7 +408,7 @@ module.exports = grammar({
             ".?",
         ),
 
-        fn_call_arguments: $ => seq("(", $.expr_list, ")"),
+        fn_call_arguments: $ => seq("(", expr_list($), ")"),
 
         // Ptr specific
         slice_type_start: $ => seq("[", optional(seq(":", $.expr)), "]"),
@@ -405,7 +422,7 @@ module.exports = grammar({
         array_type_start: $ => seq("[", $.expr, optional(seq(":", $.expr)), "]"),
 
         // ContainerDecl specific
-        container_decl_auto: $ => seq($.container_decl_type, "[", optional($.container_doc_comment), $.container_members, "]"),
+        container_decl_auto: $ => seq($.container_decl_type, "[", optional($.container_doc_comment), container_members($), "]"),
 
         container_decl_type: $ => choice(
             seq("struct", optional(seq("(", $.expr, ")"))),
@@ -416,21 +433,6 @@ module.exports = grammar({
 
         // Alignment
         byte_align: $ => seq("align", "(", $.expr, ")"),
-
-        // Lists
-        identifier_list: $ => seq(repeat(seq(optional($.doc_comment), $.identifier, ",")), optional(seq(optional($.doc_comment), $.identifier))),
-
-        switch_prong_list: $ => seq(repeat(seq($.switch_prong, ",")), optional($.switch_prong)),
-
-        asm_output_list: $ => seq(repeat(seq($.asm_output_item, ",")), optional($.asm_output_item)),
-
-        asm_input_list: $ => seq(repeat(seq($.asm_input_item, ",")), optional($.asm_input_item)),
-
-        string_list: $ => seq(repeat(seq($.string_literal, ",")), optional($.string_literal)),
-
-        param_decl_list: $ => seq(repeat(seq($.param_decl, ",")), optional($.param_decl)),
-
-        expr_list: $ => seq(repeat(seq($.expr, ",")), optional($.expr)),
 
         // Comments
         container_doc_comment: (_) =>
@@ -458,7 +460,7 @@ module.exports = grammar({
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal_single: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
         multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
-        string_literal: $ => choice($.string_literal, $.multi_string_literal),
+        string_literal: $ => prec(1, choice($.string_literal, $.multi_string_literal)),
 
         integer: (_) => choice(
             token(seq("0b", numericWithSeparator(/[01]/))),
