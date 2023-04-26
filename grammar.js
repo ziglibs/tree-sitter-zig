@@ -194,10 +194,21 @@ module.exports = grammar({
 
         for_type_expr: $ => seq($.for_prefix, $.type_expr, optional(seq("else", $.type_expr))),
 
-        while_type_expr: $ => seq($.while_prefix, $.type_expr, optional(seq("else" optional($.payload), $.type_expr))),
+        while_type_expr: $ => seq($.while_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr))),
 
         switch_expr: $ => seq("switch", "(", $.expr, ")", "{", $.switch_prong_list, "}"),
 
         // *** Assembly ***
+        asm_expr: $ => seq("asm", optional("volatile"), "(", $.expr, optional($.asm_output), ")"),
+
+        asm_output: $ => seq(":", $.asm_output_list, optional($.asm_input)),
+
+        asm_output_item: $ => seq("[", $.identifier, "]", $.stringliteral, "(", seq("->", choice($.type_expr, $.identifier)), ")"),
+
+        asm_input: $ => seq(":", $.asm_input_list, optional($.asm_clobbers)),
+
+        asm_input_item: $ => seq("[", $.identifier, "]", $.stringliteral, "(", $.expr, ")"),
+
+        asm_clobbers: $ => seq(":", $.string_list),
     }
 });
