@@ -30,27 +30,27 @@ module.exports = grammar({
         
         // *** Top level ***
         container_members: $ => seq($.container_declarations, repeat(seq($.container_field, ",")), choice($.container_field, $.container_declarations)),
-        container_declarations: $ => repeat(
+        container_declarations: $ => repeat(choice(
             seq($.test_decl),
             seq($.comptime_decl),
-            seq(optional(doc_comment), optional("pub"), $.decl)
-        ),
+            seq(optional($.doc_comment), optional("pub"), $.decl)
+        )),
 
-        test_decl: $ => seq("test", optional(field("name", choice($.string_literal_single, $.identifier))), block),
+        test_decl: $ => seq("test", optional(field("name", choice($.string_literal_single, $.identifier))), $.block),
 
         comptime_decl: $ => seq("comptime", $.block),
 
         decl: $ => choice(
             seq(optional(choice("export", seq("extern", optional($.string_literal_single)), choice("inline", "noinline"))), $.fn_proto, choice(";", $.block)),
-            seq(optional(choice("export" / seq("extern", optional($.string_literal_single))), optional("threadlocal"), $.var_decl)),
+            seq(optional(choice("export", seq("extern", optional($.string_literal_single)))), optional("threadlocal"), $.var_decl),
             seq("usingnamespace", $.expr, ";")
         ),
 
         fn_proto: $ => seq("fn", optional($.identifier), "(", $.param_decl_list, ")", optional($.byte_align), optional($.addr_space), optional($.link_section), optional($.call_conv), optional("!"), $.type_expr),
         var_decl: $ => seq(choice("const", "var"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional($.addr_space), optional($.link_section), optional(seq("=", $.expr)), ";"),
         container_field: $ => choice(
-            seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(":", $.type_expr), optional($.byte_align), optional(seq("=", $.expr))),
-            seq(optional($.doc_comment), optional("comptime"), optional($.identifier, ":"), $.type_expr, optional($.byte_align), optional(seq("=", $.expr))),
+            seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional(seq("=", $.expr))),
+            seq(optional($.doc_comment), optional("comptime"), optional(seq($.identifier, ":")), $.type_expr, optional($.byte_align), optional(seq("=", $.expr))),
         ),
 
         // *** Block Level ***
@@ -77,7 +77,7 @@ module.exports = grammar({
 
         for_statement: $ => choice(
             seq($.for_prefix, $.block_expr, optional(seq("else", $.statement))),
-            seq($.for_prefix, $.assign_expr, seq(choice($.semicolon, "else"), $statement)),
+            seq($.for_prefix, $.assign_expr, seq(choice(";", "else"), $.statement)),
         ),
 
         while_statement: $ => choice(
@@ -124,13 +124,13 @@ module.exports = grammar({
             seq("resume", $.expr),
             seq("return", optional($.expr)),
             seq(optional($.block_label), $.loop_expr),
-            block,
-            curly_suffix_expr,
+            $.block,
+            $.curly_suffix_expr,
         ),
 
         if_expr: $ => seq($.if_prefix, $.expr, optional(seq("else", optional($.payload), $.expr))),
 
-        block: $ => seq($.lbrace, repeat($.statement), $.rbrace),
+        block: $ => seq("{", repeat($.statement), "}"),
 
         loop_expr: $ => seq(optional("inline"), choice($.for_expr, $.while_expr)),
 
@@ -148,7 +148,7 @@ module.exports = grammar({
 
         type_expr: $ => seq(repeat($.prefix_type_op), $.error_union_expr),
 
-        error_union_expr: _ => seq(suffix_expr, optional(seq(exclamationmark, type_expr))),
+        error_union_expr: $ => seq($.suffix_expr, optional(seq("!", $.type_expr))),
 
         suffix_expr: $ => choice(
             seq("async", $.primary_type_expr, repeat($.suffix_op), $.fn_call_arguments),
@@ -156,11 +156,11 @@ module.exports = grammar({
         ),
 
         primary_type_expr: $ => choice(
-            seq($.builtinidentifier, $.fn_call_arguments),
+            seq($.builtin_identifier, $.fn_call_arguments),
             $.char_literal,
             $.container_decl,
-            seq($.dot, $.identifier),
-            seq($.dot, $.init_list),
+            seq(".", $.identifier),
+            seq(".", $.init_list),
             $.error_set_decl,
             $.float,
             $.fn_proto,
@@ -173,17 +173,17 @@ module.exports = grammar({
             seq("error", ".", $.identifier),
             "anyframe",
             "unreachable",
-            $.stringliteral,
+            $.string_literal,
             $.switch_expr,
         ),
 
         container_decl: $ => seq(optional(choice("extern", "packed")), $.container_decl_auto),
 
-        error_set_decl: $ => seq("error", "(", $.identifier_list, $.rbrace),
+        error_set_decl: $ => seq("error", "{", $.identifier_list, "}"),
 
         grouped_expr: $ => seq("(", $.expr, ")"),
 
-        if_type_expr: $ => seq($.if_prefix, $.type_expr, optional(seq("else", optional(payload), type_expr))),
+        if_type_expr: $ => seq($.if_prefix, $.type_expr, optional(seq("else", optional($.payload), $.type_expr))),
 
         labeled_type_expr: $ => choice(
             seq($.block_label, $.block),
@@ -203,11 +203,11 @@ module.exports = grammar({
 
         asm_output: $ => seq(":", $.asm_output_list, optional($.asm_input)),
 
-        asm_output_item: $ => seq("[", $.identifier, "]", $.stringliteral, "(", seq("->", choice($.type_expr, $.identifier)), ")"),
+        asm_output_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", seq("->", choice($.type_expr, $.identifier)), ")"),
 
         asm_input: $ => seq(":", $.asm_input_list, optional($.asm_clobbers)),
 
-        asm_input_item: $ => seq("[", $.identifier, "]", $.stringliteral, "(", $.expr, ")"),
+        asm_input_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", $.expr, ")"),
 
         asm_clobbers: $ => seq(":", $.string_list),
 
@@ -228,7 +228,7 @@ module.exports = grammar({
         call_conv: $ => seq("callconv", "(", $.expr, ")"),
 
         param_decl: $ => choice(
-            seq(optional($.doc_comment), optional(choice("noalias" / "comptime")), optional(seq($.identifier, ":")), $.param_type),
+            seq(optional($.doc_comment), optional(choice("noalias", "comptime")), optional(seq($.identifier, ":")), $.param_type),
             "...",
         ),
 
@@ -283,7 +283,7 @@ module.exports = grammar({
         ),
 
         switch_case: $ => choice(
-            seq($.switch_item, repeat(",", $.switch_item), optional(",")), 
+            seq($.switch_item, repeat(choice(",", $.switch_item)), optional(",")), 
             "else"
         ),
 
@@ -337,7 +337,7 @@ module.exports = grammar({
             "^",
             "|",
             "orelse",
-            seq("catch", optional(payload)),
+            seq("catch", optional($.payload)),
         ),
 
         bit_shift_op: $ => choice(
@@ -380,12 +380,12 @@ module.exports = grammar({
             "?",
             seq("anyframe", "->"),
             seq($.slice_type_start, repeat(choice($.byte_align, $.addr_space, "const", "volatile", "allowzero"))),
-            seq($.ptr_type_start, repeat(choice($.addr_space, seq($.keyword_align, "(", $.expr, optional(seq(":", $.expr, ":", $.expr)), ")"), "const", "volatile", "allowzero"))),
+            seq($.ptr_type_start, repeat(choice($.addr_space, seq("align", "(", $.expr, optional(seq(":", $.expr, ":", $.expr)), ")"), "const", "volatile", "allowzero"))),
             $.array_type_start,
         ),
 
         suffix_op: $ => choice(
-            seq("[", $.expr, optional(seq("..", optional(seq(optional($.expr), optional(":", $.expr))))), "]"),
+            seq("[", $.expr, optional(seq("..", optional(seq(optional($.expr), optional(seq(":", $.expr)))))), "]"),
             seq(".", $.identifier),
             ".*",
             ".?",
@@ -394,7 +394,7 @@ module.exports = grammar({
         fn_call_arguments: $ => seq("(", $.expr_list, ")"),
 
         // Ptr specific
-        slice_type_start: $ => seq("[", optional(seq(":", expr)), "]"),
+        slice_type_start: $ => seq("[", optional(seq(":", $.expr)), "]"),
 
         ptr_type_start: $ => seq(
             "*",
@@ -411,14 +411,14 @@ module.exports = grammar({
             seq("struct", optional(seq("(", $.expr, ")"))),
             "opaque",
             seq("enum", optional(seq("(", $.expr, ")"))),
-            seq("union", optional(seq("(", choice(seq("enum", optional(seq("(", $.expr, ")"))), expr), ")"))),
+            seq("union", optional(seq("(", choice(seq("enum", optional(seq("(", $.expr, ")"))), $.expr), ")"))),
         ),
 
         // Alignment
         byte_align: $ => seq("align", "(", $.expr, ")"),
 
         // Lists
-        identifier_list: $ => seq(repeat(seq(optional($.doc_comment), $.identifier, ",")), optional(seq(optional(doc_comment), $.identifier))),
+        identifier_list: $ => seq(repeat(seq(optional($.doc_comment), $.identifier, ",")), optional(seq(optional($.doc_comment), $.identifier))),
 
         switch_prong_list: $ => seq(repeat(seq($.switch_prong, ",")), optional($.switch_prong)),
 
@@ -426,10 +426,51 @@ module.exports = grammar({
 
         asm_input_list: $ => seq(repeat(seq($.asm_input_item, ",")), optional($.asm_input_item)),
 
-        string_list: $ => seq(repeat(seq($.stringliteral, ",")), optional($.stringliteral)),
+        string_list: $ => seq(repeat(seq($.string_literal, ",")), optional($.string_literal)),
 
         param_decl_list: $ => seq(repeat(seq($.param_decl, ",")), optional($.param_decl)),
 
-        expr_list: $ => seq(repeat(seq($.expr, $.comma)), optional($.expr)),
+        expr_list: $ => seq(repeat(seq($.expr, ",")), optional($.expr)),
+
+        // Comments
+        container_doc_comment: (_) =>
+            token(repeat1(seq("//!", /[^\n]*/, /[ \n]*/))),
+        doc_comment: (_) => token(repeat1(seq("///", /[^\n]*/, /[ \n]*/))),
+        line_comment: (_) => token(seq("//", /.*/)),
+
+        // Strings
+        identifier: ($) => choice(/[A-Za-z_][A-Za-z0-9_]*/, seq("@", $.string_literal)),
+        string_escape: ($) => choice(
+            "\\n",
+            "\\r",
+            "\\t",
+            "\\\\",
+            "\\'",
+            "\\\"",
+            /\\x[0-9a-fA-F]{2}/,
+            /\\u\{[0-9a-fA-F]{1,6}\}/
+        ),
+        builtin_identifier: $ => /@[A-Za-z_][A-Za-z0-9_]*/,
+
+        char_fragment: ($) => token.immediate(prec(1, /[^'\\]/)),
+        string_fragment: ($) => token.immediate(prec(1, /[^"\\]+/)),
+
+        char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
+        string_literal_single: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
+        multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
+        string_literal: $ => choice($.string_literal, $.multi_string_literal),
+
+        integer: (_) => choice(
+            token(seq("0b", numericWithSeparator(/[01]/))),
+            token(seq("0o", numericWithSeparator(/[0-7]/))),
+            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/))),
+            token(numericWithSeparator(/[0-9]/)),
+        ),
+
+        float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
     }
 });
+
+function numericWithSeparator(regex) {
+    return seq(regex, repeat(seq(optional("_"), regex)));
+}
