@@ -1,1 +1,1 @@
-pub threadlocal var abc = 10;
+test {}

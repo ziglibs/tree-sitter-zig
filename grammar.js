@@ -210,5 +210,224 @@ module.exports = grammar({
         asm_input_item: $ => seq("[", $.identifier, "]", $.stringliteral, "(", $.expr, ")"),
 
         asm_clobbers: $ => seq(":", $.string_list),
+
+        // *** Helper grammar ***
+        break_label: $ => seq(":", $.identifier),
+
+        block_label: $ => seq($.identifier, ":"),
+
+        field_init: $ => seq(".", $.identifier, "=", $.expr),
+
+        while_continue_expr: $ => seq(":", "(", $.assign_expr, ")"),
+
+        link_section: $ => seq("linksection", "(", $.expr, ")"),
+
+        addr_space: $ => seq("addrspace", "(", $.expr, ")"),
+
+        // Fn specific
+        call_conv: $ => seq("callconv", "(", $.expr, ")"),
+
+        param_decl: $ => choice(
+            seq(optional($.doc_comment), optional(choice("noalias" / "comptime")), optional(seq($.identifier, ":")), $.param_type),
+            "...",
+        ),
+
+        param_type: $ => choice(
+            "anytype",
+            $.type_expr,
+        ),
+
+        // Control flow prefixes        
+        if_prefix: $ => seq(
+            "if", 
+            "(", 
+            $.expr, 
+            ")", 
+            optional($.ptr_payload)
+        ),
+
+        while_prefix: $ => seq(
+            "while", 
+            "(", 
+            $.expr, 
+            ")", 
+            optional($.ptr_payload), 
+            optional($.while_continue_expr)
+        ),  
+
+        for_prefix: $ => seq(
+            "for", 
+            "(", 
+            $.for_arguments_list, 
+            ")", 
+            $.ptr_list_payload
+        ),
+
+        // Payloads
+        payload: $ => seq("|", $.identifier, "|"),
+
+        ptr_payload: $ => seq("|", optional("*"), $.identifier, "|"),  
+
+        ptr_index_payload: $ => seq("|", optional("*"), $.identifier, optional(seq(",", $.identifier)), "|"),
+
+        ptr_list_payload: $ => seq("|", optional("*"), $.identifier, repeat(seq(",", optional("*"), $.identifier)), optional(","), "|"),
+
+        // Switch specific
+        switch_prong: $ => seq(
+            optional("inline"), 
+            "switch", 
+            $.switch_case, 
+            "=>", 
+            optional($.ptr_index_payload), 
+            $.assign_expr,
+        ),
+
+        switch_case: $ => choice(
+            seq($.switch_item, repeat(",", $.switch_item), optional(",")), 
+            "else"
+        ),
+
+        switch_item: $ => seq($.expr, optional(seq("...", $.expr))),
+
+        // For specific
+        for_arguments_list: $ => seq(
+            $.for_item, 
+            repeat(seq(",", $.for_item)), 
+            optional(",")
+        ),  
+
+        for_item: $ => seq(
+            $.expr, 
+            optional(seq("..", optional($.expr)))
+        ),
+
+        // Operators
+        assign_op: $ => choice(
+            "*=",
+            "*|=",
+            "/=",
+            "%=",
+            "+=",
+            "+|=",
+            "-=",
+            "-|=",
+            "<<=",
+            "<<|=",
+            ">>=",
+            "&=",
+            "^=",
+            "|=",
+            "*%=",
+            "+%=",
+            "-%=",
+            "=",
+        ),
+
+        compare_op: $ => choice(
+            "==",
+            "!=",
+            ">",
+            "<",
+            ">=",
+            "<=",
+        ),
+
+        bitwise_op: $ => choice(
+            "&",
+            "^",
+            "|",
+            "orelse",
+            seq("catch", optional(payload)),
+        ),
+
+        bit_shift_op: $ => choice(
+            "<<",
+            ">>",
+            "<<|"
+        ),
+
+        addition_op: $ => choice(
+            "+",
+            "-",
+            "++",
+            "+%",
+            "-%",
+            "+|",
+            "-|",
+        ),
+
+        multiply_op: $ => choice(
+            "||",
+            "*",
+            "/",
+            "%",
+            "**",
+            "*%",
+            "*|",
+        ),
+
+        prefix_op: $ => choice(
+            "!",
+            "-",
+            "~",
+            "-%",
+            "&",
+            "try",
+            "await",
+        ),
+
+        prefix_type_op: $ => choice(
+            "?",
+            seq("anyframe", "->"),
+            seq($.slice_type_start, repeat(choice($.byte_align, $.addr_space, "const", "volatile", "allowzero"))),
+            seq($.ptr_type_start, repeat(choice($.addr_space, seq($.keyword_align, "(", $.expr, optional(seq(":", $.expr, ":", $.expr)), ")"), "const", "volatile", "allowzero"))),
+            $.array_type_start,
+        ),
+
+        suffix_op: $ => choice(
+            seq("[", $.expr, optional(seq("..", optional(seq(optional($.expr), optional(":", $.expr))))), "]"),
+            seq(".", $.identifier),
+            ".*",
+            ".?",
+        ),
+
+        fn_call_arguments: $ => seq("(", $.expr_list, ")"),
+
+        // # Ptr specific
+        // SliceTypeStart <- LBRACKET (COLON Expr)? RBRACKET
+
+        // PtrTypeStart
+        //     <- ASTERISK
+        //     / ASTERISK2
+        //     / LBRACKET ASTERISK (LETTERC / COLON Expr)? RBRACKET
+
+        // ArrayTypeStart <- LBRACKET Expr (COLON Expr)? RBRACKET
+
+        // # ContainerDecl specific
+        // ContainerDeclAuto <- ContainerDeclType LBRACE container_doc_comment? ContainerMembers RBRACE
+
+        // ContainerDeclType
+        //     <- KEYWORD_struct (LPAREN Expr RPAREN)?
+        //     / KEYWORD_opaque
+        //     / KEYWORD_enum (LPAREN Expr RPAREN)?
+        //     / KEYWORD_union (LPAREN (KEYWORD_enum (LPAREN Expr RPAREN)? / Expr) RPAREN)?
+
+        // # Alignment
+        // ByteAlign <- KEYWORD_align LPAREN Expr RPAREN
+
+        // # Lists
+        // IdentifierList <- (doc_comment? IDENTIFIER COMMA)* (doc_comment? IDENTIFIER)?
+
+        // SwitchProngList <- (SwitchProng COMMA)* SwitchProng?
+
+        // AsmOutputList <- (AsmOutputItem COMMA)* AsmOutputItem?
+
+        // AsmInputList <- (AsmInputItem COMMA)* AsmInputItem?
+
+        // StringList <- (STRINGLITERAL COMMA)* STRINGLITERAL?
+
+        // ParamDeclList <- (ParamDecl COMMA)* ParamDecl?
+
+        // ExprList <- (Expr COMMA)* Expr?
     }
 });
