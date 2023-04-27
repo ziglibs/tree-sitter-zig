@@ -1538,7 +1538,7 @@
           "named": true
         },
         {
-          "type": "string_literal",
+          "type": "string_literal_single",
           "named": true
         }
       ]

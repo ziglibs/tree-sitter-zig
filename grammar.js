@@ -47,7 +47,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.root], [$.container_decl_auto], [$.switch_case]],
+    conflicts: ($) => [[$.root], [$.container_decl_auto], [$.switch_case], [$.loop_expr], [$.loop_type_expr]],
 
     rules: {
         root: $ => seq(optional($.container_doc_comment), container_members($)),
@@ -65,10 +65,10 @@ module.exports = grammar({
 
         fn_proto: $ => seq("fn", optional($.identifier), "(", param_decl_list($), ")", optional($.byte_align), optional($.addr_space), optional($.link_section), optional($.call_conv), optional("!"), $.type_expr),
         var_decl: $ => seq(choice("const", "var"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional($.addr_space), optional($.link_section), optional(seq("=", $.expr)), ";"),
-        container_field: $ => prec(5, choice(
+        container_field: $ => choice(
             seq(optional($.doc_comment), optional("comptime"), $.identifier, optional(seq(":", $.type_expr)), optional($.byte_align), optional(seq("=", $.expr))),
             seq(optional($.doc_comment), optional("comptime"), optional(seq($.identifier, ":")), $.type_expr, optional($.byte_align), optional(seq("=", $.expr))),
-        )),
+        ),
 
         // *** Block Level ***
         statement: $ => choice(
@@ -292,7 +292,6 @@ module.exports = grammar({
         // Switch specific
         switch_prong: $ => seq(
             optional("inline"), 
-            "switch", 
             $.switch_case, 
             "=>", 
             optional($.ptr_index_payload), 
@@ -413,7 +412,7 @@ module.exports = grammar({
         // Ptr specific
         slice_type_start: $ => seq("[", optional(seq(":", $.expr)), "]"),
 
-        ptr_type_start: $ => seq(
+        ptr_type_start: $ => choice(
             "*",
             "**",
             seq("[", "*", optional(choice("c", seq(":", $.expr))), "]"),
@@ -422,7 +421,7 @@ module.exports = grammar({
         array_type_start: $ => seq("[", $.expr, optional(seq(":", $.expr)), "]"),
 
         // ContainerDecl specific
-        container_decl_auto: $ => seq($.container_decl_type, "[", optional($.container_doc_comment), container_members($), "]"),
+        container_decl_auto: $ => seq($.container_decl_type, "{", optional($.container_doc_comment), container_members($), "}"),
 
         container_decl_type: $ => choice(
             seq("struct", optional(seq("(", $.expr, ")"))),
@@ -460,7 +459,7 @@ module.exports = grammar({
         char_literal: ($) => seq("'", choice($.char_fragment, $.string_escape), "'"),
         string_literal_single: ($) => seq("\"", repeat(choice($.string_fragment, $.string_escape)), "\""),
         multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
-        string_literal: $ => prec(1, choice($.string_literal, $.multi_string_literal)),
+        string_literal: $ => prec(1, choice($.string_literal_single, $.multi_string_literal)),
 
         integer: (_) => choice(
             token(seq("0b", numericWithSeparator(/[01]/))),
