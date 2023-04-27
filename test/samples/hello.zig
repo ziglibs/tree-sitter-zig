@@ -1,6 +1,3 @@
-test {
-    switch (a) {
-        .one => @panic("one"),
-        else => @panic("else"),
-    }
+pub fn main() void {
+    while (false) 1;
 }

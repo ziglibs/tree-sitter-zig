@@ -94,12 +94,12 @@ module.exports = grammar({
 
         for_statement: $ => choice(
             seq($.for_prefix, $.block_expr, optional(seq("else", $.statement))),
-            seq($.for_prefix, $.assign_expr, seq(choice(";", "else"), $.statement)),
+            seq($.for_prefix, $.assign_expr, seq(choice(";", seq("else", $.statement)))),
         ),
 
         while_statement: $ => choice(
             seq($.while_prefix, $.block_expr, optional(seq("else", optional($.payload), $.statement))),
-            seq($.while_prefix, $.assign_expr, seq(choice(";", "else"), optional($.payload), $.statement)),
+            seq($.while_prefix, $.assign_expr, seq(choice(";", seq("else", optional($.payload), $.statement)))),
         ),
 
         block_expr_statement: $ => choice(

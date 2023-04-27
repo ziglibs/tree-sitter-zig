@@ -1144,14 +1144,19 @@
                       "value": ";"
                     },
                     {
-                      "type": "STRING",
-                      "value": "else"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "else"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "statement"
+                        }
+                      ]
                     }
                   ]
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "statement"
                 }
               ]
             }
@@ -1230,26 +1235,31 @@
                       "value": ";"
                     },
                     {
-                      "type": "STRING",
-                      "value": "else"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "else"
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "payload"
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "statement"
+                        }
+                      ]
                     }
                   ]
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "payload"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "statement"
                 }
               ]
             }
