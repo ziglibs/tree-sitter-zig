@@ -463,7 +463,8 @@ module.exports = grammar({
         // Comments
         container_doc_comment: (_) =>
             token(repeat1(seq("//!", /[^\n]*/, /[ \n]*/))),
-        doc_comment: (_) => token(repeat1(seq("///", /[^\n]*/, /[ \n]*/))),
+        // doc_comment: (_) => token(repeat1(seq("///", /[^\n]*/, /[ \n]*/))),
+        doc_comment: (_) => token(repeat1(/\/\/\/(([^/\n][^\n]*[ \n]*)|)/)),
         line_comment: (_) => token(seq("//", /.*/)),
 
         // Strings
@@ -496,7 +497,7 @@ module.exports = grammar({
         ),
 
         float: $ => prec(10, choice(
-            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/), ".", numericWithSeparator(/[0-9a-fA-F]/)), optional(seq(/[pP][+\-]?/, numericWithSeparator(/[0-9]/)))),
+            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/), ".", numericWithSeparator(/[0-9a-fA-F]/), optional(seq(/[pP][+\-]?/, numericWithSeparator(/[0-9]/))))),
             token(seq(numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/), optional(seq(/[eE][+\-]?/, numericWithSeparator(/[0-9]/))))),
             token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/), /[pP]-/, numericWithSeparator(/[0-9]/))),
             token(seq(numericWithSeparator(/[0-9]/), /[eE]-/, numericWithSeparator(/[0-9]/))),
