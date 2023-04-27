@@ -1,3 +1,3 @@
-pub fn main() void {
-    while (false) 1;
+test {
+    if (1) a | b | c else {};
 }

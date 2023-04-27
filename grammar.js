@@ -71,7 +71,7 @@ module.exports = grammar({
         ),
 
         // *** Block Level ***
-        statement: $ => choice(
+        statement: $ => prec(precedence.curly, choice(
             seq(optional("comptime"), $.var_decl),
             seq("comptime", $.block_expr_statement),
             seq("nosuspend", $.block_expr_statement),
@@ -82,7 +82,7 @@ module.exports = grammar({
             seq($.labeled_statement),
             seq($.switch_expr),
             seq($.assign_expr, ";"),
-        ),
+        )),
 
         if_statement: $ => choice(
             seq($.if_prefix, $.block_expr, optional(seq("else", optional($.payload), $.statement))), 
@@ -115,21 +115,21 @@ module.exports = grammar({
 
         expr: $ => $.bool_or_expr,
 
-        bool_or_expr: $ => prec.right(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
+        bool_or_expr: $ => prec.left(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
 
-        bool_and_expr: $ => prec.right(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
+        bool_and_expr: $ => prec.left(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
 
-        compare_expr: $ => prec.right(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
+        compare_expr: $ => prec.left(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
 
-        bitwise_expr: $ => prec.right(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
+        bitwise_expr: $ => prec.left(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
 
-        bit_shift_expr: $ => prec.right(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
+        bit_shift_expr: $ => prec.left(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
 
-        addition_expr: $ => prec.right(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
+        addition_expr: $ => prec.left(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
 
-        multiply_expr: $ => prec.right(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
+        multiply_expr: $ => prec.left(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
 
-        prefix_expr: $ => prec.right(precedence.prefix, seq(repeat($.prefix_op), $.primary_expr)),
+        prefix_expr: $ => prec.left(precedence.prefix, seq(repeat($.prefix_op), $.primary_expr)),
 
         primary_expr: $ => prec.right(precedence.primary, choice(
             $.asm_expr,
@@ -461,14 +461,15 @@ module.exports = grammar({
         multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
         string_literal: $ => prec(1, choice($.string_literal_single, $.multi_string_literal)),
 
+        // TODO: Properly handle exponent - we don't really care about this in zls though
         integer: (_) => choice(
             token(seq("0b", numericWithSeparator(/[01]/))),
             token(seq("0o", numericWithSeparator(/[0-7]/))),
             token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/))),
-            token(numericWithSeparator(/[0-9]/)),
+            token(numericWithSeparator(/[0-9e]/)),
         ),
 
-        float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/))),
+        float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9e]/), ".", numericWithSeparator(/[0-9e]/))),
     }
 });
 
