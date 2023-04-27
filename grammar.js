@@ -113,21 +113,48 @@ module.exports = grammar({
 
         assign_expr: $ => prec(precedence.assign, seq($.expr, optional(seq($.assign_op, $.expr)))),
 
-        expr: $ => $.bool_or_expr,
+        // expr: $ => $.bool_or_expr,
 
-        bool_or_expr: $ => prec.left(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
+        // bool_or_expr: $ => prec.left(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
 
-        bool_and_expr: $ => prec.left(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
+        // bool_and_expr: $ => prec.left(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
 
-        compare_expr: $ => prec.left(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
+        // compare_expr: $ => prec.left(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
 
-        bitwise_expr: $ => prec.left(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
+        // bitwise_expr: $ => prec.left(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
 
-        bit_shift_expr: $ => prec.left(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
+        // bit_shift_expr: $ => prec.left(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
 
-        addition_expr: $ => prec.left(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
+        // addition_expr: $ => prec.left(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
 
-        multiply_expr: $ => prec.left(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
+        // multiply_expr: $ => prec.left(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
+
+        expr: $ => choice($.binary_expr, $.prefix_expr, $.primary_expr),
+
+        binary_expr: $ => {
+            const table = [
+                [precedence.or, "or"],
+                [precedence.and, "and"],
+                [precedence.comparative, $.compare_op],
+                [precedence.bitwise, $.bitwise_op],
+                [precedence.bitshift, $.bit_shift_op],
+                [precedence.addition, $.addition_op],
+                [precedence.multiply, $.multiply_op],
+            ];
+
+            return choice(
+                ...table.map(([precedence, operator]) =>
+                    prec.left(
+                        precedence,
+                        seq(
+                            field("left", $.expr),
+                            field("operator", operator),
+                            field("right", $.expr)
+                        )
+                    )
+                )
+            );
+        },
 
         prefix_expr: $ => prec.left(precedence.prefix, seq(repeat($.prefix_op), $.primary_expr)),
 
@@ -220,7 +247,7 @@ module.exports = grammar({
 
         asm_output: $ => seq(":", asm_output_list($), optional($.asm_input)),
 
-        asm_output_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", seq("->", choice($.type_expr, $.identifier)), ")"),
+        asm_output_item: $ => seq("[", $.identifier, "]", $.string_literal, "(", choice(seq("->", $.type_expr), $.identifier), ")"),
 
         asm_input: $ => seq(":", asm_input_list($), optional($.asm_clobbers)),
 
@@ -461,15 +488,17 @@ module.exports = grammar({
         multi_string_literal: ($) => prec(1, repeat1(seq("\\\\", /[^\n]*/, "\n"))),
         string_literal: $ => prec(1, choice($.string_literal_single, $.multi_string_literal)),
 
-        // TODO: Properly handle exponent - we don't really care about this in zls though
-        integer: (_) => choice(
+        integer: $ => choice(
             token(seq("0b", numericWithSeparator(/[01]/))),
             token(seq("0o", numericWithSeparator(/[0-7]/))),
-            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/))),
-            token(numericWithSeparator(/[0-9e]/)),
+            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/), optional(seq(/[pP]\+?/, numericWithSeparator(/[0-9]/))))),
+            token(seq(numericWithSeparator(/[0-9]/), optional(seq(/[eE]\+?/, numericWithSeparator(/[0-9]/))))),
         ),
 
-        float: (_) => token(seq(optional("-"), numericWithSeparator(/[0-9e]/), ".", numericWithSeparator(/[0-9e]/))),
+        float: $ => prec(10, choice(
+            token(seq("0x", numericWithSeparator(/[0-9a-fA-F]/), ".", numericWithSeparator(/[0-9a-fA-F]/)), optional(seq(/[pP][+\-]?/, numericWithSeparator(/[0-9]/)))),
+            token(seq(numericWithSeparator(/[0-9]/), ".", numericWithSeparator(/[0-9]/), optional(seq(/[eE][+\-]?/, numericWithSeparator(/[0-9]/))))),
+        )),
     }
 });
 

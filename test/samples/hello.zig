@@ -1,3 +1,3 @@
 test {
-    if (1) a | b | c else {};
+    const pos_x: T = 12.0;
 }

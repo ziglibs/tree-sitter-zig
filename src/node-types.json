@@ -1,24 +1,5 @@
 [
   {
-    "type": "addition_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "addition_op",
-          "named": true
-        },
-        {
-          "type": "multiply_expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "addition_op",
     "named": true,
     "fields": {}
@@ -196,47 +177,69 @@
     "fields": {}
   },
   {
-    "type": "bit_shift_expr",
+    "type": "binary_expr",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "addition_expr",
-          "named": true
-        },
-        {
-          "type": "bit_shift_op",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "addition_op",
+            "named": true
+          },
+          {
+            "type": "and",
+            "named": false
+          },
+          {
+            "type": "bit_shift_op",
+            "named": true
+          },
+          {
+            "type": "bitwise_op",
+            "named": true
+          },
+          {
+            "type": "compare_op",
+            "named": true
+          },
+          {
+            "type": "multiply_op",
+            "named": true
+          },
+          {
+            "type": "or",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "bit_shift_op",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "bitwise_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "bit_shift_expr",
-          "named": true
-        },
-        {
-          "type": "bitwise_op",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "bitwise_op",
@@ -322,36 +325,6 @@
     }
   },
   {
-    "type": "bool_and_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "compare_expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "bool_or_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "bool_and_expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "break_label",
     "named": true,
     "fields": {},
@@ -410,25 +383,6 @@
         },
         {
           "type": "string_escape",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "compare_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "bitwise_expr",
-          "named": true
-        },
-        {
-          "type": "compare_op",
           "named": true
         }
       ]
@@ -651,7 +605,15 @@
       "required": true,
       "types": [
         {
-          "type": "bool_or_expr",
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "primary_expr",
           "named": true
         }
       ]
@@ -675,6 +637,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "float",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "fn_call_arguments",
@@ -1116,25 +1083,6 @@
     "type": "multi_string_literal",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "multiply_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "multiply_op",
-          "named": true
-        },
-        {
-          "type": "prefix_expr",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "multiply_op",
@@ -2251,10 +2199,6 @@
   {
     "type": "extern",
     "named": false
-  },
-  {
-    "type": "float",
-    "named": true
   },
   {
     "type": "fn",
