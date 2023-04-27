@@ -1,3 +1,1 @@
-test {
-    const pos_x: T = 12.0;
-}
+const epsilon = 1e-7;
