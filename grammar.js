@@ -1,15 +1,16 @@
+const offset = 5;
 const precedence = {
-    curly: 1,
-    assign: 2,
-    primary: 3,
-    or: 4,
-    and: 5,
-    comparative: 6,
-    bitwise: 7,
-    bitshift: 8,
-    addition: 9,
-    multiply: 10,
-    prefix: 11,
+    curly: 1 + offset,
+    assign: 2 + offset,
+    primary: 3 + offset,
+    or: 4 + offset,
+    and: 5 + offset,
+    comparative: 6 + offset,
+    bitwise: 7 + offset,
+    bitshift: 8 + offset,
+    addition: 9 + offset,
+    multiply: 10 + offset,
+    prefix: 11 + offset,
 };
 
 function numericWithSeparator(regex) {
@@ -463,7 +464,6 @@ module.exports = grammar({
         // Comments
         container_doc_comment: (_) =>
             token(repeat1(seq("//!", /[^\n]*/, /[ \n]*/))),
-        // doc_comment: (_) => token(repeat1(seq("///", /[^\n]*/, /[ \n]*/))),
         doc_comment: (_) => token(repeat1(/\/\/\/(([^/\n][^\n]*[ \n]*)|)/)),
         line_comment: (_) => token(seq("//", /.*/)),
 
