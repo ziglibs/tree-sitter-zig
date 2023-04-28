@@ -36,6 +36,8 @@ def main():
         file.close()
 
     print("👍 " + str(passed) + " / " + str(len(paths)) + " (" + str(passed / len(paths) * 100) + "%)")
+    if passed != len(paths):
+        exit(1)
 
 if len(sys.argv) == 1:
     print("valid.py [paths...]")
