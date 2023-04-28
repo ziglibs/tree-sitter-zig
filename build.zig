@@ -1,7 +1,15 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    _ = b.addModule("tree-sitter-zig", .{
-        .source_file = .{ .path = "src/parser.c" },
+    var obj = b.addStaticLibrary(.{
+        .name = "tree-sitter-zig",
+        .target = b.standardTargetOptions(.{}),
+        .optimize = b.standardOptimizeOption(.{}),
     });
+
+    obj.linkLibC();
+    obj.addCSourceFile("src/parser.c", &.{});
+    obj.addIncludePath("src");
+
+    b.installArtifact(obj);
 }

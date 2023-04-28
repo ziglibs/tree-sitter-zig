@@ -1,0 +1,39 @@
+name: Publish
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm i -g tree-sitter-cli
+
+      - run: tree-sitter generate
+
+      - run: |
+          tar --exclude='node_modules' --exclude='.git' -czvf ../tree-sitter-zig.tar.gz .
+
+      - uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.DO_SPACES_ACCESS_KEY }}
+          secret_key: ${{ secrets.DO_SPACES_SECRET_KEY }}
+          space_name: zigtools-releases
+          space_region: nyc3
+          source: ../tree-sitter-zig.tar.gz
+
+      
