@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: [ "main", "action" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
