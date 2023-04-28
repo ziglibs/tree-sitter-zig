@@ -26,7 +26,7 @@ jobs:
       - run: tree-sitter generate
 
       - run: |
-          tar --exclude='node_modules' --exclude='.git' -czvf ../tree-sitter-zig-${GITHUB_SHA::7}.tar.gz .
+          tar --exclude='node_modules' --exclude='.git' -czvf ../tree-sitter-zig-${{ github.sha }}.tar.gz .
 
       - uses: BetaHuhn/do-spaces-action@v2
         with:
@@ -34,6 +34,6 @@ jobs:
           secret_key: ${{ secrets.DO_SPACES_SECRET_KEY }}
           space_name: zigtools-releases
           space_region: nyc3
-          source: ../tree-sitter-zig-${GITHUB_SHA::7}.tar.gz
+          source: ../tree-sitter-zig-${{ github.sha }}.tar.gz
 
       
