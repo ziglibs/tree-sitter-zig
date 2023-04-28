@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - "grammar.js"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Checkout zig
+        uses: actions/checkout@v3
+        with:
+          path: zig
+          repository: "ziglang/zig"
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          npm i -g tree-sitter-cli
+          pip3 install tree_sitter
+
+      - name: Generate Tree-Sitter Parser
+        run: |
+          cd $GITHUB_WORKSPACE
+          tree-sitter generate
+
+      - name: Run Tests
+        run: |
+          python ./test/valid.py $GITHUB_WORKSPACE/zig/lib/std/\*\*/\*.zig
+
+      - name: Create Tarball
+        if: ${{ github.ref == 'refs/heads/main' && github.repository_owner == 'ziglibs' }}
+        run: |
+          tar --exclude='node_modules' --exclude='zig' --exclude='.git' -czvf ../tree-sitter-zig-${{ github.sha }}.tar.gz .
+
+      - name: Upload to DigitalOcean Space
+        uses: BetaHuhn/do-spaces-action@v2
+        if: ${{ github.ref == 'refs/heads/main' && github.repository_owner == 'ziglibs' }}
+        with:
+          access_key: ${{ secrets.DO_SPACES_ACCESS_KEY }}
+          secret_key: ${{ secrets.DO_SPACES_SECRET_KEY }}
+          space_name: zigtools-releases
+          space_region: nyc3
+          source: ../tree-sitter-zig-${{ github.sha }}.tar.gz
+
+      

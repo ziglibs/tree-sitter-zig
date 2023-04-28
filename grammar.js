@@ -1,3 +1,4 @@
+//
 const offset = 5;
 const precedence = {
     curly: 1 + offset,
