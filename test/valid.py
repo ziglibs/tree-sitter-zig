@@ -1,8 +1,13 @@
+import os
 import sys
 import glob
+import hashlib
 from tree_sitter import Language, Parser
 
 def main():
+    if not os.path.exists("test/invalid_outputs"):
+        os.mkdir("test/invalid_outputs")
+
     Language.build_library(
         "build/zig-py.so",
 
@@ -28,11 +33,19 @@ def main():
     for path in paths:
         file = open(path, "rb")
         tree = parser.parse(file.read())
+        h = hashlib.md5(path.encode("utf-8")).hexdigest()
+        hp = os.path.join("test", "invalid_outputs", h)
         if len(query.captures(tree.root_node)) == 0:
+            if os.path.exists(hp):
+                os.remove(hp)
             print("✅ " + path)
             passed += 1
         else:
-            print("❌ " + path)
+            out = open(hp, "w+")
+            out.write("File: " + path + "\n\n")
+            out.write(tree.root_node.sexp())
+            print("❌ " + path + " (@ " + hp + ")")
+            out.close()
         file.close()
 
     print("👍 " + str(passed) + " / " + str(len(paths)) + " (" + str(passed / len(paths) * 100) + "%)")

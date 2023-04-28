@@ -115,22 +115,6 @@ module.exports = grammar({
 
         assign_expr: $ => prec(precedence.assign, seq($.expr, optional(seq($.assign_op, $.expr)))),
 
-        // expr: $ => $.bool_or_expr,
-
-        // bool_or_expr: $ => prec.left(precedence.or, seq($.bool_and_expr, repeat(seq("or", $.bool_and_expr)))),
-
-        // bool_and_expr: $ => prec.left(precedence.and, seq($.compare_expr, repeat(seq("and", $.compare_expr)))),
-
-        // compare_expr: $ => prec.left(precedence.comparative, seq($.bitwise_expr, optional(seq($.compare_op, $.bitwise_expr)))),
-
-        // bitwise_expr: $ => prec.left(precedence.bitwise, seq($.bit_shift_expr, repeat(seq($.bitwise_op, $.bit_shift_expr)))),
-
-        // bit_shift_expr: $ => prec.left(precedence.bitshift, seq($.addition_expr, repeat(seq($.bit_shift_op, $.addition_expr)))),
-
-        // addition_expr: $ => prec.left(precedence.addition, seq($.multiply_expr, repeat(seq($.addition_op, $.multiply_expr)))),
-
-        // multiply_expr: $ => prec.left(precedence.multiply, seq($.prefix_expr, repeat(seq($.multiply_op, $.prefix_expr)))),
-
         expr: $ => choice($.binary_expr, $.prefix_expr, $.primary_expr),
 
         binary_expr: $ => {
