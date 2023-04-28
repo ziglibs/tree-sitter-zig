@@ -49,7 +49,7 @@ module.exports = grammar({
     inline: (_) => [],
     extras: ($) => [/\s/, $.line_comment],
     // TODO: Investigate these - can we fix them?
-    conflicts: ($) => [[$.root], [$.container_decl_auto], [$.switch_case], [$.loop_expr], [$.loop_type_expr]],
+    conflicts: ($) => [[$.root], [$.container_decl_auto]],
 
     rules: {
         root: $ => seq(optional($.container_doc_comment), container_members($)),
@@ -162,7 +162,10 @@ module.exports = grammar({
 
         block: $ => seq("{", repeat($.statement), "}"),
 
-        loop_expr: $ => seq(optional("inline"), choice($.for_expr, $.while_expr)),
+        loop_expr: $ => choice(
+            prec(2, seq("inline", choice($.for_expr, $.while_expr))),
+            seq(optional("inline"), choice($.for_expr, $.while_expr)),
+        ),
 
         for_expr: $ => prec.right(seq($.for_prefix, $.expr, optional(seq("else", $.expr)))),
 
@@ -220,7 +223,10 @@ module.exports = grammar({
             seq(optional($.block_label), $.loop_type_expr),
         ),
 
-        loop_type_expr: $ => seq(optional("inline"), choice($.for_type_expr, $.while_type_expr)),
+        loop_type_expr: $ => choice(
+            prec(2, seq("inline", choice($.for_type_expr, $.while_type_expr))),
+            seq(optional("inline"), choice($.for_type_expr, $.while_type_expr)),
+        ),
 
         for_type_expr: $ => prec.right(seq($.for_prefix, $.type_expr, optional(seq("else", $.type_expr)))),
 
@@ -312,7 +318,7 @@ module.exports = grammar({
         ),
 
         switch_case: $ => choice(
-            seq($.switch_item, repeat(choice(",", $.switch_item)), optional(",")), 
+            seq($.switch_item, repeat(seq(",", $.switch_item)), optional(",")), 
             "else"
         ),
 
