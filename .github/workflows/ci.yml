@@ -4,11 +4,12 @@ on:
   push:
     paths:
       - "grammar.js"
+  pull_request:
+    paths:
+      - "grammar.js"
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
