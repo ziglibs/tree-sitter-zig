@@ -1,10 +1,9 @@
-comptime {
-    // switch (0) {}
+test {
+    // a = 1;
+    // const abc = &.{ 1, 2, 3, 4 };
+    // _ = abc;
 
-    switch (0) {}
-    {}
-    // {
-    //     // const prev_status = union_obj.status;
-    // };
-    // if (1 == 1) {}
+    if (1 == 1) {
+        @compileLog("bruh");
+    }
 }
