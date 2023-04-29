@@ -4,9 +4,12 @@ on:
   push:
     paths:
       - "grammar.js"
+      - '.github/workflows/ci.yml'
   pull_request:
     paths:
       - "grammar.js"
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -49,7 +52,8 @@ jobs:
       - name: Create Tarball
         if: ${{ github.ref == 'refs/heads/main' && github.repository_owner == 'ziglibs' }}
         run: |
-          tar --exclude='node_modules' --exclude='zig' --exclude='.git' -czvf ../tree-sitter-zig-${{ github.sha }}.tar.gz .
+          mkdir -p ../staging/tree-sitter-zig
+          tar --exclude='node_modules' --exclude='zig' --exclude='.git' -czvf ../staging/tree-sitter-zig/${{ github.sha }}.tar.gz .
 
       - name: Upload to DigitalOcean Space
         uses: BetaHuhn/do-spaces-action@v2
@@ -59,6 +63,6 @@ jobs:
           secret_key: ${{ secrets.DO_SPACES_SECRET_KEY }}
           space_name: zigtools-releases
           space_region: nyc3
-          source: ../tree-sitter-zig-${{ github.sha }}.tar.gz
+          source: ../staging
 
       

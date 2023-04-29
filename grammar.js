@@ -513,3 +513,4 @@ module.exports = grammar({
 function numericWithSeparator(regex) {
     return seq(regex, repeat(seq(optional("_"), regex)));
 }
+
