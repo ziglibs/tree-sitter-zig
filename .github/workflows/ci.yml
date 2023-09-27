@@ -3,10 +3,12 @@ name: CI
 on:
   push:
     paths:
+      - "build.zig"
       - "grammar.js"
       - '.github/workflows/ci.yml'
   pull_request:
     paths:
+      - "build.zig"
       - "grammar.js"
       - '.github/workflows/ci.yml'
   workflow_dispatch:
